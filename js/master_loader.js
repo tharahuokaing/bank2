@@ -165,3 +165,18 @@
   document.addEventListener("DOMContentLoaded", boot);
 
 })();
+
+function loadDashboard() {
+
+    document.getElementById("dashboardContainer").style.display = "block";
+
+    document.getElementById("accountCount").textContent = "1,254";
+
+    document.getElementById("depositTotal").textContent =
+        "$25,400,000";
+
+    document.getElementById("txCount").textContent =
+        "4,862";
+
+    showModule("accounts");
+}
