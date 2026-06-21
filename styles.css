@@ -1,562 +1,569 @@
 /* =========================================================
-HUOKAING THARA BANK
-Modern Fintech Enterprise Design System
+   HUOKAING THARA BANK
+   Enterprise Banking Operating Platform
+   Version 5.0
 ========================================================= */
 
 :root {
---primary: #0f172a;
---secondary: #1e293b;
---accent: #10b981;
---accent-hover: #059669;
 
-```
---glass: rgba(255,255,255,0.08);
---glass-border: rgba(255,255,255,0.12);
+    /* Core Colors */
+    --bg-primary: #050816;
+    --bg-secondary: #0f172a;
+    --bg-panel: rgba(15,23,42,.75);
 
---text-primary: #ffffff;
---text-secondary: #94a3b8;
+    --accent: #00e5ff;
+    --accent-green: #00ff88;
+    --accent-yellow: #ffd700;
+    --accent-red: #ff4d4d;
+    --accent-purple: #8b5cf6;
 
---shadow-lg:
-    0 20px 40px rgba(0,0,0,.25);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
 
---radius: 24px;
+    --glass: rgba(255,255,255,.05);
+    --glass-border: rgba(255,255,255,.10);
 
---transition: all .3s ease;
-```
+    --radius: 18px;
 
+    --shadow:
+        0 10px 30px rgba(0,0,0,.35);
+
+    --transition: all .3s ease;
 }
 
 /* =========================================================
-RESET
+   RESET
 ========================================================= */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
-
-html {
-scroll-behavior: smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-min-height: 100vh;
+html{
+    scroll-behavior:smooth;
+}
 
-```
-display: flex;
-justify-content: center;
-align-items: center;
+body{
 
-padding: 30px;
+    font-family:
+        "Inter",
+        "Segoe UI",
+        sans-serif;
 
-font-family: "Inter", "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left,
+        rgba(0,229,255,.15),
+        transparent 40%),
 
-color: var(--text-primary);
+        radial-gradient(circle at bottom right,
+        rgba(0,255,136,.12),
+        transparent 40%),
 
-background:
-    radial-gradient(
-        circle at top left,
-        rgba(16,185,129,.15),
-        transparent 35%
-    ),
+        linear-gradient(
+            135deg,
+            #010409,
+            #07111f,
+            #0f172a
+        );
 
-    radial-gradient(
-        circle at bottom right,
-        rgba(59,130,246,.15),
-        transparent 35%
-    ),
+    color:var(--text-primary);
 
-    linear-gradient(
-        135deg,
-        #020617,
-        #0f172a,
-        #111827
-    );
-
-overflow-x: hidden;
-
-position: relative;
-```
-
+    min-height:100vh;
+    padding:20px;
 }
 
 /* =========================================================
-FLOATING LIGHT EFFECTS
+   BOOT SCREEN
 ========================================================= */
 
-body::before,
-body::after {
-content: "";
+.boot-screen{
 
-```
-position: fixed;
+    position:fixed;
+    inset:0;
 
-border-radius: 50%;
+    background:#000;
 
-filter: blur(120px);
+    display:flex;
+    flex-direction:column;
 
-z-index: -1;
-```
+    align-items:center;
+    justify-content:center;
 
+    z-index:99999;
 }
 
-body::before {
-width: 350px;
-height: 350px;
+.boot-screen h1{
 
-```
-background: rgba(16,185,129,.15);
+    color:var(--accent);
 
-top: -120px;
-left: -120px;
-```
-
+    margin-bottom:20px;
 }
 
-body::after {
-width: 300px;
-height: 300px;
-
-```
-background: rgba(59,130,246,.12);
-
-bottom: -100px;
-right: -100px;
-```
-
+#bootStatus{
+    color:#00ff88;
+    font-family:monospace;
 }
 
 /* =========================================================
-MAIN CONTAINER
+   LOGIN CONTAINER
 ========================================================= */
 
-.bank-container {
-width: 100%;
-max-width: 500px;
+.hologram{
 
-```
-padding: 50px 40px;
+    max-width:1200px;
 
-position: relative;
+    margin:auto;
 
-background: var(--glass);
+    background:var(--bg-panel);
 
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
+    backdrop-filter:blur(20px);
 
-border: 1px solid var(--glass-border);
+    border:1px solid var(--glass-border);
 
-border-radius: var(--radius);
+    border-radius:var(--radius);
 
-box-shadow: var(--shadow-lg);
+    padding:30px;
 
-overflow: hidden;
-```
-
+    box-shadow:var(--shadow);
 }
 
-/* Glow Border */
+#loginContainer{
 
-.bank-container::before {
-content: "";
-
-```
-position: absolute;
-inset: -2px;
-
-border-radius: inherit;
-
-background:
-    linear-gradient(
-        135deg,
-        rgba(16,185,129,.4),
-        transparent,
-        rgba(59,130,246,.4)
-    );
-
-z-index: -1;
-
-filter: blur(14px);
-```
-
+    max-width:520px;
+    margin:auto;
 }
 
 /* =========================================================
-LOGO
+   LOGO
 ========================================================= */
 
-.bank-logo-wrapper {
-display: flex;
-justify-content: center;
-margin-bottom: 25px;
+.bank-logo-wrapper{
+
+    display:flex;
+    justify-content:center;
+
+    margin-bottom:25px;
 }
 
-.bank-logo-img {
-width: 120px;
-height: auto;
+.bank-logo-img{
 
-```
-padding: 10px;
+    width:140px;
 
-background: rgba(255,255,255,.05);
+    border-radius:20px;
 
-border-radius: 18px;
+    border:1px solid rgba(255,255,255,.15);
 
-border: 1px solid rgba(255,255,255,.08);
-
-box-shadow:
-    0 10px 30px rgba(0,0,0,.25);
-```
-
+    box-shadow:
+        0 0 25px rgba(0,229,255,.25);
 }
 
 /* =========================================================
-TYPOGRAPHY
+   TYPOGRAPHY
 ========================================================= */
 
-h1 {
-text-align: center;
+h1,h2,h3{
 
-```
-font-size: 2.4rem;
-
-font-weight: 700;
-
-letter-spacing: -1px;
-
-margin-bottom: 10px;
-```
-
+    font-weight:700;
 }
 
-.subtitle {
-text-align: center;
+h1{
 
-```
-color: var(--text-secondary);
+    text-align:center;
 
-margin-bottom: 35px;
+    margin-bottom:20px;
 
-font-size: 0.95rem;
-```
+    color:var(--accent);
+}
 
+h2{
+    color:var(--accent);
+}
+
+p{
+    line-height:1.6;
 }
 
 /* =========================================================
-FORM
+   LOGIN FORM
 ========================================================= */
 
-.form-group {
-margin-bottom: 18px;
+.login-form{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:20px;
 }
 
-label {
-display: block;
+.login-form input{
 
-```
-margin-bottom: 8px;
+    background:#111827;
 
-font-size: 0.9rem;
+    border:1px solid #334155;
 
-color: var(--text-secondary);
-```
+    color:white;
 
+    padding:14px;
+
+    border-radius:12px;
 }
 
-input,
-select,
-textarea {
-width: 100%;
+.login-form input:focus{
 
-```
-padding: 15px 18px;
+    outline:none;
 
-background: rgba(255,255,255,.05);
+    border-color:var(--accent);
 
-border: 1px solid rgba(255,255,255,.08);
-
-border-radius: 14px;
-
-color: white;
-
-font-size: 1rem;
-
-transition: var(--transition);
-```
-
+    box-shadow:
+        0 0 10px rgba(0,229,255,.25);
 }
 
-input::placeholder,
-textarea::placeholder {
-color: rgba(255,255,255,.4);
+.login-form button{
+
+    background:
+        linear-gradient(
+            135deg,
+            #00e5ff,
+            #00bfff
+        );
+
+    border:none;
+
+    color:black;
+
+    font-weight:700;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-outline: none;
+.login-form button:hover{
 
-```
-border-color: var(--accent);
+    transform:translateY(-2px);
+}
 
-box-shadow:
-    0 0 0 4px rgba(16,185,129,.15);
-```
+.login-message{
 
+    margin-top:15px;
+
+    color:var(--accent-red);
 }
 
 /* =========================================================
-BUTTONS
+   AI PANELS
 ========================================================= */
 
-button,
-.btn {
-width: 100%;
+.ai-recommend{
 
-```
-border: none;
+    margin-top:20px;
 
-padding: 16px;
+    padding:15px;
 
-border-radius: 14px;
+    background:rgba(255,255,255,.03);
 
-background:
-    linear-gradient(
-        135deg,
-        #10b981,
-        #059669
-    );
+    border:1px solid rgba(255,255,255,.08);
 
-color: white;
-
-font-size: 1rem;
-
-font-weight: 600;
-
-cursor: pointer;
-
-transition: var(--transition);
-```
-
+    border-radius:12px;
 }
 
-button:hover,
-.btn:hover {
-transform: translateY(-2px);
+.ai-recommend h3{
 
-```
-box-shadow:
-    0 12px 24px rgba(16,185,129,.35);
-```
+    color:var(--accent-green);
 
+    margin-bottom:10px;
 }
 
-button:active,
-.btn:active {
-transform: translateY(0);
-}
+.ai-recommend p{
 
-/* Secondary Button */
-
-.btn-secondary {
-background: rgba(255,255,255,.05);
-
-```
-border: 1px solid rgba(255,255,255,.08);
-```
-
-}
-
-.btn-secondary:hover {
-background: rgba(255,255,255,.08);
+    font-size:.9rem;
+    margin-bottom:5px;
 }
 
 /* =========================================================
-ACCOUNT CARD
+   DASHBOARD
 ========================================================= */
 
-.account-card {
-margin-top: 25px;
+.dashboard{
 
-```
-padding: 20px;
-
-border-radius: 18px;
-
-background:
-    linear-gradient(
-        135deg,
-        rgba(16,185,129,.15),
-        rgba(59,130,246,.10)
-    );
-
-border: 1px solid rgba(255,255,255,.08);
-```
-
+    width:100%;
 }
 
-.account-title {
-font-size: .9rem;
+.dashboard-grid{
 
-```
-color: var(--text-secondary);
+    display:grid;
 
-margin-bottom: 8px;
-```
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
 
+    gap:20px;
+
+    margin-top:20px;
 }
 
-.balance {
-font-size: 2rem;
+.card{
 
-```
-font-weight: 700;
-```
+    background:rgba(255,255,255,.03);
 
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    text-align:center;
+}
+
+.card h3{
+
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.card p{
+
+    font-size:1.6rem;
+    font-weight:bold;
 }
 
 /* =========================================================
-TABLES
+   MENU
 ========================================================= */
 
-table {
-width: 100%;
+.dashboard-menu{
 
-```
-border-collapse: collapse;
+    display:flex;
 
-margin-top: 20px;
-```
+    gap:10px;
 
+    flex-wrap:wrap;
+
+    margin-top:25px;
 }
 
-th,
-td {
-padding: 14px;
+.dashboard-menu button{
 
-```
-text-align: left;
-```
+    width:auto;
 
+    background:#111827;
+
+    color:white;
+
+    border:1px solid #334155;
+
+    padding:12px 18px;
 }
 
-th {
-color: var(--text-secondary);
+.dashboard-menu button:hover{
 
-```
-border-bottom: 1px solid rgba(255,255,255,.08);
-```
+    background:var(--accent);
 
-}
-
-tr:not(:last-child) {
-border-bottom: 1px solid rgba(255,255,255,.05);
+    color:black;
 }
 
 /* =========================================================
-ALERTS
+   PHASES
 ========================================================= */
 
-.alert {
-padding: 14px;
+.phases-list{
 
-```
-border-radius: 14px;
+    margin-top:30px;
 
-margin-bottom: 15px;
-```
+    display:grid;
 
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:12px;
+
+    list-style:none;
 }
 
-.alert-success {
-background: rgba(16,185,129,.15);
+.phases-list li{
 
-```
-border: 1px solid rgba(16,185,129,.3);
-```
+    background:#111827;
 
+    border-left:4px solid var(--accent);
+
+    padding:15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
 }
 
-.alert-danger {
-background: rgba(239,68,68,.15);
+.phases-list li:hover{
 
-```
-border: 1px solid rgba(239,68,68,.3);
-```
+    transform:translateX(5px);
 
+    background:#1e293b;
 }
 
 /* =========================================================
-FOOTER
+   PHASE DETAILS
 ========================================================= */
 
-.footer {
-margin-top: 30px;
+.phase-detail-box{
 
-```
-text-align: center;
+    margin-top:25px;
 
-color: var(--text-secondary);
+    padding:25px;
 
-font-size: .85rem;
-```
+    background:rgba(255,255,255,.03);
 
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,.08);
 }
 
 /* =========================================================
-SCROLLBAR
+   TABLES
 ========================================================= */
 
-::-webkit-scrollbar {
-width: 8px;
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
 }
 
-::-webkit-scrollbar-track {
-background: #0f172a;
+th{
+
+    background:#111827;
+
+    color:var(--accent);
+
+    text-align:left;
+
+    padding:12px;
 }
 
-::-webkit-scrollbar-thumb {
-background: #10b981;
+td{
 
-```
-border-radius: 10px;
-```
+    padding:12px;
 
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
 }
 
 /* =========================================================
-RESPONSIVE
+   BUTTONS
 ========================================================= */
 
-@media (max-width: 768px) {
+button{
 
-```
-.bank-container {
-    padding: 35px 25px;
+    transition:var(--transition);
 }
 
-h1 {
-    font-size: 2rem;
-}
-```
+#logoutBtn{
 
-}
+    background:#ff4444;
 
-@media (max-width: 480px) {
+    color:white;
 
-```
-body {
-    padding: 15px;
-}
+    border:none;
 
-.bank-container {
-    padding: 28px 20px;
+    padding:12px 18px;
+
+    border-radius:10px;
 }
 
-h1 {
-    font-size: 1.8rem;
-}
-```
+/* =========================================================
+   SEARCH
+========================================================= */
 
+#searchContainer{
+
+    margin-top:25px;
+}
+
+/* =========================================================
+   HEARTBEAT
+========================================================= */
+
+.heartbeat-indicator{
+
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    width:15px;
+    height:15px;
+
+    background:#00ff88;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 15px #00ff88;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.5);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--accent);
+
+    border-radius:8px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    .dashboard-menu{
+
+        flex-direction:column;
+    }
+
+    .dashboard-menu button{
+
+        width:100%;
+    }
+
+    .phases-list{
+
+        grid-template-columns:1fr;
+    }
+
+    .hologram{
+
+        padding:20px;
+    }
 }
