@@ -95,10 +95,61 @@
 
   <div class="hologram dashboard" id="summaryBox" hidden>
 
-    <header class="dashboard-header">
-      <h1>Enterprise Banking Control Panel</h1>
-      <div id="aiStatusBubble" class="ai-bubble"></div>
-    </header>
+    <div id="dashboardContainer" style="display:none;">
+
+    <h2>🏦 HUOKAING THARA Banking Dashboard</h2>
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+            <h3>Accounts</h3>
+            <p id="accountCount">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Deposits</h3>
+            <p id="depositTotal">$0</p>
+        </div>
+
+        <div class="card">
+            <h3>Transactions Today</h3>
+            <p id="txCount">0</p>
+        </div>
+
+        <div class="card">
+            <h3>System Status</h3>
+            <p style="color:lime;">ONLINE</p>
+        </div>
+
+    </div>
+
+    <div class="dashboard-menu">
+
+        <button onclick="showModule('accounts')">
+            Accounts
+        </button>
+
+        <button onclick="showModule('transfers')">
+            Transfers
+        </button>
+
+        <button onclick="showModule('customers')">
+            Customers
+        </button>
+
+        <button onclick="showModule('risk')">
+            Risk
+        </button>
+
+        <button onclick="showModule('phases')">
+            Project Phases
+        </button>
+
+    </div>
+
+    <div id="moduleContent"></div>
+
+</div>
 
     <!-- Command Console injected here -->
     <div id="searchContainer"></div>
