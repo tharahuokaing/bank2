@@ -1,0 +1,562 @@
+/* =========================================================
+HUOKAING THARA BANK
+Modern Fintech Enterprise Design System
+========================================================= */
+
+:root {
+--primary: #0f172a;
+--secondary: #1e293b;
+--accent: #10b981;
+--accent-hover: #059669;
+
+```
+--glass: rgba(255,255,255,0.08);
+--glass-border: rgba(255,255,255,0.12);
+
+--text-primary: #ffffff;
+--text-secondary: #94a3b8;
+
+--shadow-lg:
+    0 20px 40px rgba(0,0,0,.25);
+
+--radius: 24px;
+
+--transition: all .3s ease;
+```
+
+}
+
+/* =========================================================
+RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+min-height: 100vh;
+
+```
+display: flex;
+justify-content: center;
+align-items: center;
+
+padding: 30px;
+
+font-family: "Inter", "Segoe UI", sans-serif;
+
+color: var(--text-primary);
+
+background:
+    radial-gradient(
+        circle at top left,
+        rgba(16,185,129,.15),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(59,130,246,.15),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #111827
+    );
+
+overflow-x: hidden;
+
+position: relative;
+```
+
+}
+
+/* =========================================================
+FLOATING LIGHT EFFECTS
+========================================================= */
+
+body::before,
+body::after {
+content: "";
+
+```
+position: fixed;
+
+border-radius: 50%;
+
+filter: blur(120px);
+
+z-index: -1;
+```
+
+}
+
+body::before {
+width: 350px;
+height: 350px;
+
+```
+background: rgba(16,185,129,.15);
+
+top: -120px;
+left: -120px;
+```
+
+}
+
+body::after {
+width: 300px;
+height: 300px;
+
+```
+background: rgba(59,130,246,.12);
+
+bottom: -100px;
+right: -100px;
+```
+
+}
+
+/* =========================================================
+MAIN CONTAINER
+========================================================= */
+
+.bank-container {
+width: 100%;
+max-width: 500px;
+
+```
+padding: 50px 40px;
+
+position: relative;
+
+background: var(--glass);
+
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+
+border: 1px solid var(--glass-border);
+
+border-radius: var(--radius);
+
+box-shadow: var(--shadow-lg);
+
+overflow: hidden;
+```
+
+}
+
+/* Glow Border */
+
+.bank-container::before {
+content: "";
+
+```
+position: absolute;
+inset: -2px;
+
+border-radius: inherit;
+
+background:
+    linear-gradient(
+        135deg,
+        rgba(16,185,129,.4),
+        transparent,
+        rgba(59,130,246,.4)
+    );
+
+z-index: -1;
+
+filter: blur(14px);
+```
+
+}
+
+/* =========================================================
+LOGO
+========================================================= */
+
+.bank-logo-wrapper {
+display: flex;
+justify-content: center;
+margin-bottom: 25px;
+}
+
+.bank-logo-img {
+width: 120px;
+height: auto;
+
+```
+padding: 10px;
+
+background: rgba(255,255,255,.05);
+
+border-radius: 18px;
+
+border: 1px solid rgba(255,255,255,.08);
+
+box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+```
+
+}
+
+/* =========================================================
+TYPOGRAPHY
+========================================================= */
+
+h1 {
+text-align: center;
+
+```
+font-size: 2.4rem;
+
+font-weight: 700;
+
+letter-spacing: -1px;
+
+margin-bottom: 10px;
+```
+
+}
+
+.subtitle {
+text-align: center;
+
+```
+color: var(--text-secondary);
+
+margin-bottom: 35px;
+
+font-size: 0.95rem;
+```
+
+}
+
+/* =========================================================
+FORM
+========================================================= */
+
+.form-group {
+margin-bottom: 18px;
+}
+
+label {
+display: block;
+
+```
+margin-bottom: 8px;
+
+font-size: 0.9rem;
+
+color: var(--text-secondary);
+```
+
+}
+
+input,
+select,
+textarea {
+width: 100%;
+
+```
+padding: 15px 18px;
+
+background: rgba(255,255,255,.05);
+
+border: 1px solid rgba(255,255,255,.08);
+
+border-radius: 14px;
+
+color: white;
+
+font-size: 1rem;
+
+transition: var(--transition);
+```
+
+}
+
+input::placeholder,
+textarea::placeholder {
+color: rgba(255,255,255,.4);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+outline: none;
+
+```
+border-color: var(--accent);
+
+box-shadow:
+    0 0 0 4px rgba(16,185,129,.15);
+```
+
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+button,
+.btn {
+width: 100%;
+
+```
+border: none;
+
+padding: 16px;
+
+border-radius: 14px;
+
+background:
+    linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
+
+color: white;
+
+font-size: 1rem;
+
+font-weight: 600;
+
+cursor: pointer;
+
+transition: var(--transition);
+```
+
+}
+
+button:hover,
+.btn:hover {
+transform: translateY(-2px);
+
+```
+box-shadow:
+    0 12px 24px rgba(16,185,129,.35);
+```
+
+}
+
+button:active,
+.btn:active {
+transform: translateY(0);
+}
+
+/* Secondary Button */
+
+.btn-secondary {
+background: rgba(255,255,255,.05);
+
+```
+border: 1px solid rgba(255,255,255,.08);
+```
+
+}
+
+.btn-secondary:hover {
+background: rgba(255,255,255,.08);
+}
+
+/* =========================================================
+ACCOUNT CARD
+========================================================= */
+
+.account-card {
+margin-top: 25px;
+
+```
+padding: 20px;
+
+border-radius: 18px;
+
+background:
+    linear-gradient(
+        135deg,
+        rgba(16,185,129,.15),
+        rgba(59,130,246,.10)
+    );
+
+border: 1px solid rgba(255,255,255,.08);
+```
+
+}
+
+.account-title {
+font-size: .9rem;
+
+```
+color: var(--text-secondary);
+
+margin-bottom: 8px;
+```
+
+}
+
+.balance {
+font-size: 2rem;
+
+```
+font-weight: 700;
+```
+
+}
+
+/* =========================================================
+TABLES
+========================================================= */
+
+table {
+width: 100%;
+
+```
+border-collapse: collapse;
+
+margin-top: 20px;
+```
+
+}
+
+th,
+td {
+padding: 14px;
+
+```
+text-align: left;
+```
+
+}
+
+th {
+color: var(--text-secondary);
+
+```
+border-bottom: 1px solid rgba(255,255,255,.08);
+```
+
+}
+
+tr:not(:last-child) {
+border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+/* =========================================================
+ALERTS
+========================================================= */
+
+.alert {
+padding: 14px;
+
+```
+border-radius: 14px;
+
+margin-bottom: 15px;
+```
+
+}
+
+.alert-success {
+background: rgba(16,185,129,.15);
+
+```
+border: 1px solid rgba(16,185,129,.3);
+```
+
+}
+
+.alert-danger {
+background: rgba(239,68,68,.15);
+
+```
+border: 1px solid rgba(239,68,68,.3);
+```
+
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.footer {
+margin-top: 30px;
+
+```
+text-align: center;
+
+color: var(--text-secondary);
+
+font-size: .85rem;
+```
+
+}
+
+/* =========================================================
+SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+background: #10b981;
+
+```
+border-radius: 10px;
+```
+
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+```
+.bank-container {
+    padding: 35px 25px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+```
+
+}
+
+@media (max-width: 480px) {
+
+```
+body {
+    padding: 15px;
+}
+
+.bank-container {
+    padding: 28px 20px;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+```
+
+}
