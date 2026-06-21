@@ -1,321 +1,527 @@
 /* =========================================================
-   HUOKAING THARA BANK AUTHENTICATION CONTROLLER v4
-   Secure Login + Session + Lockout + 2FA Ready
+   HUOKAING THARA BANKING SYSTEM
+   AUTHENTICATION CONTROLLER v5
+   Enterprise Dashboard Edition
 ========================================================= */
 
 (() => {
 
-  const AUTH = {
-    maxAttempts: 5,
-    lockoutTimeMs: 5 * 60 * 1000, // 5 minutes
-    sessionKey: "bankSession",
-    attemptKey: "bankLoginAttempts"
-  };
+"use strict";
 
-  /* =========================================
-     Mock User Database (Replace in Production)
-  ========================================= */
+/* =========================================================
+   CONFIGURATION
+========================================================= */
 
-  const USERS = [
+const CONFIG = {
+    SESSION_KEY: "HT_SESSION",
+    ATTEMPT_KEY: "HT_ATTEMPTS",
+
+    MAX_ATTEMPTS: 5,
+
+    LOCKOUT_MINUTES: 5,
+
+    SESSION_TIMEOUT_MINUTES: 30
+};
+
+/* =========================================================
+   USERS
+========================================================= */
+
+const USERS = [
+
+{
+    username: "huokaingthara",
+    password: "dutyfree",
+    role: "Cybersecurity",
+    requires2FA: false
+},
+
+{
+    username: "svaymetrey",
+    password: "dutyfree",
+    role: "Administrator",
+    requires2FA: false
+},
+
+{
+    username: "chornrothanak",
+    password: "dutyfree",
+    role: "Administrator",
+    requires2FA: true
+},
+
+{
+    username: "auditor",
+    password: "auditor123",
+    role: "Auditor",
+    requires2FA: true
+}
+
+];
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function log(message)
+{
+    console.log(
+        `[AUTH ${new Date().toLocaleTimeString()}] ${message}`
+    );
+}
+
+function generateToken()
+{
+    return crypto.randomUUID();
+}
+
+function saveSession(session)
+{
+    sessionStorage.setItem(
+        CONFIG.SESSION_KEY,
+        JSON.stringify(session)
+    );
+}
+
+function loadSession()
+{
+    const raw =
+        sessionStorage.getItem(CONFIG.SESSION_KEY);
+
+    if (!raw) return null;
+
+    try
     {
-      username: "huokaingthara",
-      password: "dutyfree",
-      role: "cybersecurity",
-      requires2FA: false
-    },
-
+        return JSON.parse(raw);
+    }
+    catch
     {
-      username: "auditor",
-      password: "auditor123",
-      role: "auditor",
-      requires2FA: true
-    },
+        return null;
+    }
+}
 
-    {
-      username: "svaymetrey",
-      password: "dutyfree",
-      role: "admin",
-      requires2FA: false
-    },
+function destroySession()
+{
+    sessionStorage.removeItem(CONFIG.SESSION_KEY);
+}
 
-    {
-      username: "chornrothanak",
-      password: "dutyfree",
-      role: "admin",
-      requires2FA: true
-    },
+/* =========================================================
+   LOGIN ATTEMPTS
+========================================================= */
 
-    {
-      username: "longlain",
-      password: "dutyfree",
-      role: "admin",
-      requires2FA: false
-    },
-
-    {
-      username: "chumchanrothanak", 
-      password: "dutyfree",
-      role: "admin",
-      requires2FA: true
-    },
-
-    {
-      username: "phaychanrothana",
-      password: "dutyfree",
-      role: "admin",
-      requires2FA: false
-    },
-  ];
-
-  /* =========================================
-     Utility Functions
-  ========================================= */
-
-  function logAudit(message) {
-    console.log(`[AUTH AUDIT] ${message}`);
-  }
-
-  function getAttempts() {
-    return JSON.parse(localStorage.getItem(AUTH.attemptKey)) || {
-      count: 0,
-      lockUntil: null
+function getAttempts()
+{
+    return JSON.parse(
+        localStorage.getItem(CONFIG.ATTEMPT_KEY)
+    ) || {
+        count: 0,
+        lockUntil: null
     };
-  }
+}
 
-  function setAttempts(data) {
-    localStorage.setItem(AUTH.attemptKey, JSON.stringify(data));
-  }
+function saveAttempts(data)
+{
+    localStorage.setItem(
+        CONFIG.ATTEMPT_KEY,
+        JSON.stringify(data)
+    );
+}
 
-  function clearAttempts() {
-    localStorage.removeItem(AUTH.attemptKey);
-  }
+function clearAttempts()
+{
+    localStorage.removeItem(CONFIG.ATTEMPT_KEY);
+}
 
-  function isLocked() {
+function isLocked()
+{
     const data = getAttempts();
-    if (!data.lockUntil) return false;
 
-    if (Date.now() > data.lockUntil) {
-      clearAttempts();
-      return false;
+    if (!data.lockUntil)
+        return false;
+
+    if (Date.now() > data.lockUntil)
+    {
+        clearAttempts();
+        return false;
     }
 
     return true;
-  }
+}
 
-  function lockAccount() {
-    const lockUntil = Date.now() + AUTH.lockoutTimeMs;
-    setAttempts({
-      count: AUTH.maxAttempts,
-      lockUntil
-    });
-  }
+/* =========================================================
+   LOGIN
+========================================================= */
 
-  /* =========================================
-     Login Handler
-  ========================================= */
+async function handleLogin(username,password)
+{
+    const msg =
+        document.getElementById("loginMessage");
 
-  async function handleLogin(username, password) {
-
-    const msg = document.getElementById("loginMessage");
     msg.textContent = "";
 
-    if (!username || !password) {
-      msg.textContent = "Please enter username and password.";
-      return;
+    if (!username || !password)
+    {
+        msg.textContent =
+            "Please enter username and password.";
+
+        return;
     }
 
-    if (isLocked()) {
-      msg.textContent = "Account temporarily locked. Try again later.";
-      return;
+    if (isLocked())
+    {
+        msg.textContent =
+            "Account temporarily locked.";
+
+        return;
     }
 
-    const user = USERS.find(u => u.username === username);
+    const user =
+        USERS.find(
+            u =>
+            u.username === username &&
+            u.password === password
+        );
 
-    if (!user || user.password !== password) {
+    if (!user)
+    {
+        const data = getAttempts();
 
-      const data = getAttempts();
-      data.count += 1;
+        data.count++;
 
-      if (data.count >= AUTH.maxAttempts) {
-        lockAccount();
-        msg.textContent = "Too many attempts. Account locked.";
-        logAudit("Account locked due to failed attempts.");
-      } else {
-        setAttempts(data);
-        msg.textContent = `Invalid credentials (${data.count}/${AUTH.maxAttempts})`;
-      }
+        if (data.count >= CONFIG.MAX_ATTEMPTS)
+        {
+            data.lockUntil =
+                Date.now() +
+                CONFIG.LOCKOUT_MINUTES * 60000;
 
-      return;
+            saveAttempts(data);
+
+            msg.textContent =
+                "Too many failed logins.";
+
+            return;
+        }
+
+        saveAttempts(data);
+
+        msg.textContent =
+            `Invalid credentials (${data.count}/${CONFIG.MAX_ATTEMPTS})`;
+
+        return;
     }
 
     clearAttempts();
-    logAudit(`User ${username} authenticated.`);
 
-    // 2FA Hook
-    if (user.requires2FA && typeof start2FA === "function") {
-      start2FA(() => finalizeLogin(user));
-      return;
+    if (
+        user.requires2FA &&
+        typeof start2FA === "function"
+    )
+    {
+        start2FA(
+            () => finalizeLogin(user)
+        );
+
+        return;
     }
 
     finalizeLogin(user);
-  }
+}
 
-  /* =========================================
-     Finalize Login
-  ========================================= */
+/* =========================================================
+   SUCCESS LOGIN
+========================================================= */
 
-  function finalizeLogin(user) {
-
+function finalizeLogin(user)
+{
     const session = {
-      username: user.username,
-      role: user.role,
-      loginTime: new Date().toISOString(),
-      token: generateToken()
+
+        username: user.username,
+
+        role: user.role,
+
+        loginTime: Date.now(),
+
+        token: generateToken()
     };
 
-    sessionStorage.setItem(AUTH.sessionKey, JSON.stringify(session));
+    saveSession(session);
 
-    showDashboard(session);
-  }
+    renderDashboard(session);
 
-  function generateToken() {
-    return btoa(
-      Math.random().toString(36).substring(2) +
-      Date.now().toString()
+    log(
+        `${user.username} authenticated`
     );
-  }
+}
 
-  /* =========================================
-     Dashboard
-  ========================================= */
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
-  function showDashboard(session) {
+function renderDashboard(session)
+{
+    const login =
+        document.getElementById(
+            "loginContainer"
+        );
 
-    const loginBox = document.getElementById("loginContainer");
-    const dashboard = document.getElementById("summaryBox");
+    const dashboard =
+        document.getElementById(
+            "summaryBox"
+        );
 
-    if (!loginBox || !dashboard) return;
+    if (!login || !dashboard)
+        return;
 
-    loginBox.hidden = true;
-    dashboard.hidden = false;
+    login.style.display = "none";
 
-    const bubble = document.getElementById("aiStatusBubble");
+    dashboard.style.display = "block";
 
-    if (bubble) {
-      bubble.textContent =
-        `User: ${session.username} | Role: ${session.role} | AI Core Active`;
-    }
+    updateAIStatus(session);
 
-    renderRoleView(session.role);
-  }
+    renderDashboardCards();
 
-  function renderRoleView(role) {
+    renderPhaseList();
+}
 
-    const phasesList = document.getElementById("phasesList");
-    if (!phasesList) return;
+function updateAIStatus(session)
+{
+    const bubble =
+        document.getElementById(
+            "aiStatusBubble"
+        );
 
-    phasesList.innerHTML = "";
+    if (!bubble)
+        return;
 
-    const phases = PhaseRegistry.getAll();
-
-    phases.forEach(phase => {
-
-      const li = document.createElement("li");
-
-      li.textContent =
-        `${phase.name} [${phase.status.toUpperCase()}]`;
-
-      li.onclick = () => showPhaseDetail(phase.id);
-
-      if (role === "auditor" && phase.status !== "complete") {
-        li.style.opacity = "0.5";
-      }
-
-      phasesList.appendChild(li);
-    });
-  }
-
-  function showPhaseDetail(id) {
-
-    const container =
-      document.getElementById("phaseChecklistContainer");
-
-    const phase = PhaseRegistry.getById(id);
-
-    if (!phase || !container) return;
-
-    container.innerHTML = `
-      <div class="phase-detail-box">
-        <h3>${phase.name}</h3>
-        <p><strong>Status:</strong> ${phase.status}</p>
-        <p>${phase.description}</p>
-        <p><strong>Owner:</strong> ${phase.owner || "N/A"}</p>
-        <p><strong>Risk:</strong> ${phase.riskLevel || "N/A"}</p>
-      </div>
+    bubble.innerHTML =
+    `
+        AI CORE ONLINE •
+        USER: ${session.username}
+        • ROLE: ${session.role}
     `;
-  }
-  /* =========================================
-     Logout
-  ========================================= */
+}
 
-  function logout() {
-    sessionStorage.removeItem(AUTH.sessionKey);
+function renderDashboardCards()
+{
+    const container =
+        document.getElementById(
+            "searchContainer"
+        );
+
+    if (!container)
+        return;
+
+    container.innerHTML =
+    `
+        <div class="dashboard-grid">
+
+            <div class="dashboard-card">
+                <h3>18</h3>
+                <p>Total Phases</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>ISO 20022</h3>
+                <p>Compliance</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Bakong</h3>
+                <p>Connected</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>SOC</h3>
+                <p>Monitoring</p>
+            </div>
+
+        </div>
+    `;
+}
+
+/* =========================================================
+   PHASES
+========================================================= */
+
+function renderPhaseList()
+{
+    const list =
+        document.getElementById(
+            "phasesList"
+        );
+
+    if (!list)
+        return;
+
+    list.innerHTML = "";
+
+    if (
+        !window.PhaseRegistry ||
+        !PhaseRegistry.getAll
+    )
+    {
+        list.innerHTML =
+            "<li>No phases loaded.</li>";
+
+        return;
+    }
+
+    PhaseRegistry
+        .getAll()
+        .forEach(phase =>
+        {
+            const li =
+                document.createElement("li");
+
+            li.className =
+                "phase-item";
+
+            li.innerHTML =
+            `
+            ${phase.name}
+            <span>
+            ${phase.status}
+            </span>
+            `;
+
+            li.onclick = () =>
+            {
+                if (
+                    typeof phase.render ===
+                    "function"
+                )
+                {
+                    phase.render();
+                }
+            };
+
+            list.appendChild(li);
+        });
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout()
+{
+    destroySession();
+
     location.reload();
-  }
+}
 
-  /* =========================================
-     Session Restore
-  ========================================= */
+/* =========================================================
+   SESSION RESTORE
+========================================================= */
 
-  function getSession() {
-    const raw = sessionStorage.getItem(AUTH.sessionKey);
-    if (!raw) return null;
+function restoreSession()
+{
+    const session =
+        loadSession();
 
-    try {
-      return JSON.parse(raw);
-    } catch {
-      return null;
+    if (!session)
+        return;
+
+    renderDashboard(session);
+}
+
+/* =========================================================
+   SESSION TIMEOUT
+========================================================= */
+
+function startSessionTimer()
+{
+    let timeout;
+
+    const reset = () =>
+    {
+        clearTimeout(timeout);
+
+        timeout =
+        setTimeout(() =>
+        {
+            alert(
+                "Session expired."
+            );
+
+            logout();
+
+        },
+        CONFIG.SESSION_TIMEOUT_MINUTES
+        * 60000);
+    };
+
+    document.addEventListener(
+        "mousemove",
+        reset
+    );
+
+    document.addEventListener(
+        "keypress",
+        reset
+    );
+
+    reset();
+}
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () =>
+    {
+        const form =
+            document.getElementById(
+                "loginForm"
+            );
+
+        if (form)
+        {
+            form.addEventListener(
+                "submit",
+                e =>
+                {
+                    e.preventDefault();
+
+                    handleLogin(
+                        document
+                            .getElementById(
+                                "usernameInput"
+                            )
+                            .value
+                            .trim(),
+
+                        document
+                            .getElementById(
+                                "passwordInput"
+                            )
+                            .value
+                            .trim()
+                    );
+                }
+            );
+        }
+
+        restoreSession();
+
+        startSessionTimer();
+
+        document
+            .getElementById("logoutBtn")
+            ?.addEventListener(
+                "click",
+                logout
+            );
     }
-  }
+);
 
-  function restoreSession() {
-    const session = getSession();
-    if (session) {
-      showDashboard(session);
-      logAudit(`Session restored for ${session.username}`);
-    }
-  }
+/* =========================================================
+   GLOBALS
+========================================================= */
 
-  /* =========================================
-     Bind Form
-  ========================================= */
-
-  document.addEventListener("DOMContentLoaded", () => {
-
-    const form = document.getElementById("loginForm");
-    if (!form) return;
-
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-
-      const username =
-        document.getElementById("usernameInput").value.trim();
-
-      const password =
-        document.getElementById("passwordInput").value.trim();
-
-      handleLogin(username, password);
-    });
-
-    restoreSession();
-  });
-
-  /* =========================================
-     Expose Global Functions
-  ========================================= */
-
-  window.handleLogin = handleLogin;
-  window.logout = logout;
-  window.getSession = getSession;
+window.logout = logout;
+window.handleLogin = handleLogin;
 
 })();
