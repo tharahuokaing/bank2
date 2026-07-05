@@ -39,14 +39,35 @@ const USERS = [
 {
     username: "svaymetrey",
     password: "dutyfree",
-    role: "Administrator",
+    role: "Chief Executive Officer",
     requires2FA: false
 },
 
 {
     username: "chornrothanak",
     password: "dutyfree",
-    role: "Administrator",
+    role: "Chief Executive Officer",
+    requires2FA: true
+},
+
+{
+    username: "longlain",
+    password: "dutyfree",
+    role: "Chief Executive Officer",
+    requires2FA: true
+},
+
+{
+    username: "chumchanrothanak",
+    password: "dutyfree",
+    role: "Chief Executive Officer",
+    requires2FA: true
+},
+
+{
+    username: "phaychanrothana",
+    password: "dutyfree",
+    role: "Chief Executive Officer",
     requires2FA: true
 },
 
@@ -56,7 +77,7 @@ const USERS = [
     role: "Auditor",
     requires2FA: true
 }
-
+   
 ];
 
 /* =========================================================
