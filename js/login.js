@@ -1,4 +1,4 @@
-/* =========================================================
+/* ========================================================= 
    HUOKAING THARA BANKING SYSTEM
    AUTHENTICATION CONTROLLER v5
    Enterprise Dashboard Edition
