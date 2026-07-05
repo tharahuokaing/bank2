@@ -72,9 +72,9 @@ const USERS = [
 },
 
 {
-    username: "auditor",
-    password: "auditor123",
-    role: "Auditor",
+    username: "sengchhat",
+    password: "sengchhat",
+    role: "VIP Customer",
     requires2FA: true
 }
    
