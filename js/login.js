@@ -28,58 +28,50 @@ const CONFIG = {
 ========================================================= */
 
 const USERS = [
-
-{
+  {
     username: "huokaingthara",
     password: "dutyfree",
     role: "Cybersecurity",
     requires2FA: false
-},
-
-{
+  },
+  {
     username: "svaymetrey",
     password: "dutyfree",
     role: "Chief Executive Officer",
     requires2FA: false
-},
-
-{
+  },
+  {
     username: "chornrothanak",
     password: "dutyfree",
     role: "Chief Executive Officer",
     requires2FA: true
-},
-
-{
+  },
+  {
     username: "longlain",
     password: "dutyfree",
     role: "Chief Executive Officer",
     requires2FA: true
-},
-
-{
+  },
+  {
     username: "chumchanrothanak",
     password: "dutyfree",
     role: "Chief Executive Officer",
     requires2FA: true
-},
-
-{
+  },
+  {
     username: "phaychanrothana",
     password: "dutyfree",
     role: "Chief Executive Officer",
     requires2FA: true
-},
-
-{
+  },
+  {
     username: "sengchhat",
     password: "sengchhat",
     role: "VIP Customer",
     requires2FA: true
-}
-   
+  }
 ];
-
+   
 /* =========================================================
    UTILITIES
 ========================================================= */
