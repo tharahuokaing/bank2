@@ -33,7 +33,7 @@
     "phase5.js","phase6.js","phase7.js","phase8.js",
     "phase9.js","phase10.js","phase11.js","phase12.js",
     "phase13.js","phase14.js","phase15.js","phase16.js",
-    "phase17.js","phase18.js","phase19.js","phase20.js","phase21.js"
+    "phase17.js","phase18.js","phase19.js",
   ];
 
   const BOOT_TIMEOUT_MS = 5000;
