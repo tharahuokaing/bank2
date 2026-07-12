@@ -30,37 +30,43 @@ const CONFIG = {
 const USERS = [
   {
     username: "huokaingthara",
-    password: "dutyfree",
+    password: "huokaingthara",
     role: "Cybersecurity",
     requires2FA: false
   },
   {
+    username: "huokaingthara1",
+    password: "huokaingthara1",
+    role: "Director",
+    requires2FA: false
+  },
+  {
     username: "svaymetrey",
-    password: "dutyfree",
+    password: "svaymetrey",
     role: "Chief Executive Officer",
     requires2FA: false
   },
   {
     username: "chornrothanak",
-    password: "dutyfree",
+    password: "chornrothanak",
     role: "Chief Executive Officer",
     requires2FA: true
   },
   {
     username: "longlain",
-    password: "dutyfree",
+    password: "longlain",
     role: "Chief Executive Officer",
     requires2FA: true
   },
   {
     username: "chumchanrothanak",
-    password: "dutyfree",
+    password: "chumchanrothanak",
     role: "Chief Executive Officer",
     requires2FA: true
   },
   {
     username: "phaychanrothana",
-    password: "dutyfree",
+    password: "phaychanrothana",
     role: "Chief Executive Officer",
     requires2FA: true
   },
@@ -68,6 +74,60 @@ const USERS = [
     username: "sengchhat",
     password: "sengchhat",
     role: "VIP Customer",
+    requires2FA: true
+  }
+  {
+    username: "khenlyda",
+    password: "khenlyda",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "hunkhen",
+    password: "hunkhen",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "hangsitha",
+    password: "hangsitha",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "sambathlongny",
+    password: "sambathlongny",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "sambathsreyneang",
+    password: "sambathsreyneang",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "sambathlyhour",
+    password: "sambathlyhour",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "huo",
+    password: "Vice President",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "huokaingtharoth",
+    password: "huokaingtharoth",
+    role: "Customer",
+    requires2FA: true
+  }
+{
+    username: "chunminh",
+    password: "chunminh",
+    role: "Customer",
     requires2FA: true
   }
 ];
