@@ -17,3 +17,31 @@ async function connectToBakong() {
         statusBubble.style.color = "#00ffcc";
     }
 }
+
+/* =========================================================
+   BAKONG QR GENERATOR LOGIC
+   ========================================================= */
+
+function generateBakongQR() {
+    const qrContainer = document.getElementById("qrContainer");
+    const qrCode = document.getElementById("qrCode");
+    const txStatus = document.getElementById("txStatus");
+
+    // 1. Show UI
+    qrContainer.style.display = "block";
+    qrCode.innerHTML = "LOADING QR...";
+    txStatus.textContent = "Connecting to Bakong Gateway...";
+
+    // 2. Simulate Delay
+    setTimeout(() => {
+        // 3. Inject simulated QR
+        qrCode.innerHTML = `
+            <div class="qr-pattern">
+                <div class="pixel"></div><div class="pixel"></div>
+                <div class="pixel"></div><div class="pixel"></div>
+            </div>
+        `;
+        txStatus.textContent = "Transaction Ready: KH-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+        console.log("[BAKONG]: QR Generated Successfully.");
+    }, 1000);
+}
