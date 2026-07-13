@@ -1,69 +1,64 @@
-// =====================================================
-// ACCOUNT MANAGEMENT SYSTEM
-// =====================================================
-
-// InMemory data store for accounts
-const bankingAccounts = {};
-
 /**
- * Adds a new user account with a default initial balance.
- * @param {string} username - The unique identifier for the account holder.
- * @param {number} initialBalance - Starting balance (defaults to 10000).
+ * REVISED MODULE HANDLER
+ * Integrates Transfer Center with QR Generation UI
  */
-function addAccount(username, initialBalance = 10000) {
-    // Clean up input
-    const normalizedUser = username.trim().toLowerCase();
+function showModule(module) {
+    const content = document.getElementById("moduleContent");
 
-    if (!normalizedUser) {
-        console.error("Account creation failed: Username cannot be empty.");
-        return false;
+    switch(module) {
+        case "accounts":
+            // Display logic for accounts...
+            break;
+
+        case "transfers":
+            content.innerHTML = `
+                <h3>Transfer Center</h3>
+                <div class="transfer-form">
+                    <input id="fromAcc" type="text" placeholder="From Account (e.g. Alice)">
+                    <input id="toAcc" type="text" placeholder="To Account">
+                    <input id="amount" type="number" placeholder="Amount">
+                    <button onclick="handleTransfer()">Transfer</button>
+                    <button onclick="generateBakongQR()" class="secondary-btn">Generate Bakong QR</button>
+                </div>
+                
+                <!-- QR Container (Hidden by default) -->
+                <div id="qrContainer" style="margin-top: 20px; display: none; text-align: center;">
+                    <p>Scan to Pay via Bakong:</p>
+                    <div class="qr-placeholder" id="qrCode"></div>
+                    <p id="txStatus" style="color: var(--accent-cyan); font-family: monospace;"></p>
+                </div>
+            `;
+            break;
+
+        case "risk":
+            // Risk logic...
+            break;
     }
-
-    // Check if account already exists
-    if (bankingAccounts[normalizedUser]) {
-        console.warn(`Account already exists for user: ${username}`);
-        return false;
-    }
-
-    // Create the account structure
-    bankingAccounts[normalizedUser] = {
-        displayName: username.trim(),
-        balance: initialBalance,
-        createdAt: new Date().toISOString(),
-        transactions: [
-            {
-                type: "INITIAL_DEPOSIT",
-                amount: initialBalance,
-                timestamp: new Date().toISOString(),
-                description: "Account opened with promotional balance."
-            }
-        ]
-    };
-
-    console.log(`Successfully created account for ${username} with $${initialBalance}`);
-    return true;
 }
 
 /**
- * Retrieves account details.
- * @param {string} username 
+ * Triggered by the "Generate Bakong QR" button
  */
-function getAccountDetails(username) {
-    const normalizedUser = username.trim().toLowerCase();
-    return bankingAccounts[normalizedUser] || null;
+function generateBakongQR() {
+    const qrContainer = document.getElementById("qrContainer");
+    const qrCode = document.getElementById("qrCode");
+    const txStatus = document.getElementById("txStatus");
+
+    // 1. Show UI elements
+    qrContainer.style.display = "block";
+    qrCode.innerHTML = "<em>Connecting to Gateway...</em>";
+    txStatus.textContent = "Negotiating secure session...";
+
+    // 2. Simulate Bakong Gateway handshake delay
+    setTimeout(() => {
+        // 3. Inject simulated QR pattern
+        qrCode.innerHTML = `
+            <div class="qr-pattern">
+                <div class="pixel"></div><div class="pixel"></div>
+                <div class="pixel"></div><div class="pixel"></div>
+            </div>
+        `;
+        txStatus.textContent = "TX-HASH: " + Math.random().toString(36).substr(2, 9).toUpperCase();
+        console.log("[BAKONG]: Secure QR pattern injected.");
+    }, 1200);
 }
-
-// =====================================================
-// EXAMPLE USAGE
-// =====================================================
-
-// Adding individual accounts
-addAccount("Alice");
-addAccount("Bob");
-
-// Bulk adding users from an array
-const newUsers = ["Charlie", "Diana", "Evan"];
-newUsers.forEach(user => addAccount(user, 10000));
-
-// Check data in console
-console.log("Current Banking Registry:", bankingAccounts);
