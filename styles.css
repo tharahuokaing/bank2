@@ -748,3 +748,27 @@ button:hover {
     height: 40px;
     background: #000;
 }
+
+/* Notification Toast Container */
+#toastContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #0d2c54;
+    border: 1px solid var(--accent-cyan);
+    color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 5px solid var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
