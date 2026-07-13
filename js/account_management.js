@@ -87,6 +87,16 @@ function handleTransfer() {
         return;
     }
 
+    // After updating balances:
+    bankingAccounts[fromUser].balance -= amount;
+    bankingAccounts[toUser].balance += amount;
+
+    // Trigger the refresh:
+    refreshTotalDeposits();
+
+    alert(`Transfer successful!`);
+}
+
     // 2. Perform Transaction
     bankingAccounts[fromUser].balance -= amount;
     bankingAccounts[toUser].balance += amount;
