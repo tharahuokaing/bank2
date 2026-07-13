@@ -307,29 +307,40 @@ async function handleLogin(username,password)
 }
 
 /* =========================================================
-   SUCCESS LOGIN
-========================================================= */
+   REVISED LOGIN LOGIC
+   ========================================================= */
 
-function finalizeLogin(user)
-{
-    const session = {
+const loginForm = document.getElementById("loginForm");
 
-        username: user.username,
+loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    // Simple validation placeholder
+    const username = document.getElementById("usernameInput").value;
+    
+    if (username) {
+        // 1. Hide Login
+        document.getElementById("loginContainer").style.display = "none";
+        
+        // 2. Show Dashboard
+        const dashboard = document.getElementById("summaryBox");
+        dashboard.style.display = "block";
+        
+        // 3. Initialize Dashboard Data
+        initializeDashboardData();
+    }
+});
 
-        role: user.role,
-
-        loginTime: Date.now(),
-
-        token: generateToken()
-    };
-
-    saveSession(session);
-
-    renderDashboard(session);
-
-    log(
-        `${user.username} authenticated`
-    );
+function initializeDashboardData() {
+    // Injecting account balances dynamically
+    console.log("Dashboard active. Injecting financial records...");
+    
+    // Assuming these elements exist in your updated dashboard
+    if(document.getElementById("accountCount")) {
+        document.getElementById("accountCount").textContent = "1,254";
+        document.getElementById("depositTotal").textContent = "$25,400,000";
+        document.getElementById("txCount").textContent = "4,862";
+    }
 }
 
 /* =========================================================
