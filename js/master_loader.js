@@ -19,6 +19,7 @@
   const PHASE_FILES = [
     // Core
     "login.js",
+    "account_management.js",
     "security_2fa.js",
     "ai_core.js",
     "search.js",
