@@ -125,3 +125,27 @@ function updateDashboardUI() {
         // Logic to recalculate total deposits would go here
     }
 }
+
+/**
+ * Recalculates total deposits from the bankingAccounts registry
+ * and updates the dashboard UI.
+ */
+function refreshTotalDeposits() {
+    let total = 0;
+
+    // Loop through all accounts in the object
+    for (const username in bankingAccounts) {
+        if (bankingAccounts.hasOwnProperty(username)) {
+            total += bankingAccounts[username].balance;
+        }
+    }
+
+    // Update the UI element
+    const depositElement = document.getElementById("depositTotal");
+    if (depositElement) {
+        // Format as currency
+        depositElement.textContent = "$" + total.toLocaleString();
+    }
+    
+    console.log(`[SYSTEM]: Dashboard stats updated. Total Deposits: $${total}`);
+}
