@@ -34,6 +34,24 @@ const USERS = [
     role: "Cybersecurity",
     requires2FA: false
   },
+   {
+    username: "sansopheata",
+    password: "sansopheata",
+    role: "Cybersecurity",
+    requires2FA: false
+  },
+   {
+    username: "sengviseyna",
+    password: "sengviseyna",
+    role: "Cybersecurity",
+    requires2FA: false
+  },
+   {
+    username: "somsodavin",
+    password: "somsodavin",
+    role: "Cybersecurity",
+    requires2FA: false
+  },
   {
     username: "svaymetrey",
     password: "dutyfree",
