@@ -30,14 +30,20 @@ const CONFIG = {
 const USERS = [
   {
     username: "huokaingthara",
-    password: "dutyfree",
+    password: "huokaingthara",
     role: "Cybersecurity",
     requires2FA: false
   },
-   {
+  {
+    username: "thorn",
+    password: "thorn",
+    role: "Customer",
+    requires2FA: false
+  },
+  {
     username: "sansopheata",
     password: "sansopheata",
-    role: "Cybersecurity",
+    role: "Chief Executive Officer",
     requires2FA: false
   },
    {
@@ -55,42 +61,42 @@ const USERS = [
    {
     username: "sengviseynea",
     password: "sengviseynea",
-    role: "Cybersecurity",
+    role: "Chief Executive Officer",
     requires2FA: false
   },
    {
     username: "somsodavin",
     password: "somsodavin",
-    role: "Cybersecurity",
+    role: "Chief Executive Officer",
     requires2FA: false
   },
   {
     username: "svaymetrey",
-    password: "dutyfree",
+    password: "svaymetrey",
     role: "Chief Executive Officer",
     requires2FA: false
   },
   {
     username: "chornrothanak",
-    password: "dutyfree",
+    password: "chornrothanak",
     role: "Chief Executive Officer",
     requires2FA: true
   },
   {
     username: "longlain",
-    password: "dutyfree",
+    password: "longlain",
     role: "Chief Executive Officer",
     requires2FA: true
   },
   {
     username: "chumchanrothanak",
-    password: "dutyfree",
+    password: "chumchanrothanak",
     role: "Chief Executive Officer",
     requires2FA: true
   },
   {
     username: "phaychanrothana",
-    password: "dutyfree",
+    password: "phaychanrothana",
     role: "Chief Executive Officer",
     requires2FA: true
   },
