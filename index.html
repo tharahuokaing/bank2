@@ -44,12 +44,21 @@
     </main>
 
     <!-- DASHBOARD -->
-    <div id="summaryBox" class="hologram dashboard" style="display:none;" role="region" aria-label="Banking Dashboard">
+    <div id="summaryBox" class="hologram dashboard" style="display:none;">
+    role="region" aria-label="Banking Dashboard">
         <header class="dashboard-header">
             <h2>🏦 HUOKAING THARA BANK 2</h2>
             <div id="aiStatusBubble">AI CORE OFFLINE</div>
         </header>
-
+    <div class="stats-bar">
+        <p>Total Accounts: <span id="accountCount">0</span></p>
+        <p>Total Deposits: <span id="depositTotal">$0</span></p>
+        <p>Total Transactions: <span id="txCount">0</span></p>
+    </div>
+    
+    <!-- Existing modules -->
+    <div id="moduleContent"></div>
+</div>
         <div id="searchContainer" class="dashboard-grid"></div>
         <ol id="phasesList" class="phases-list"></ol>
         <section id="phaseChecklistContainer" class="phase-checklist"></section>
@@ -74,7 +83,7 @@
     <script src="js/bakong_integration.js"></script>
     <script src="js/charter_logic.js"></script>
     <script src="js/stress_test.js"></script>
-    <script src="ultra_secure_mode.js"></script>
+    <script src="js/ultra_secure_mode.js"></script>
 
     <script>
         document.addEventListener("bankSystemReady", () => {
