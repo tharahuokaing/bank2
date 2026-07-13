@@ -62,3 +62,66 @@ function generateBakongQR() {
         console.log("[BAKONG]: Secure QR pattern injected.");
     }, 1200);
 }
+
+/**
+ * Executes a secure transfer between two accounts in the registry.
+ */
+function handleTransfer() {
+    const fromUser = document.getElementById("fromAcc").value.trim().toLowerCase();
+    const toUser = document.getElementById("toAcc").value.trim().toLowerCase();
+    const amount = parseFloat(document.getElementById("amount").value);
+
+    // 1. Validation
+    if (!bankingAccounts[fromUser] || !bankingAccounts[toUser]) {
+        alert("Error: One or both accounts not found.");
+        return;
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+        alert("Error: Please enter a valid transfer amount.");
+        return;
+    }
+
+    if (bankingAccounts[fromUser].balance < amount) {
+        alert("Error: Insufficient funds.");
+        return;
+    }
+
+    // 2. Perform Transaction
+    bankingAccounts[fromUser].balance -= amount;
+    bankingAccounts[toUser].balance += amount;
+
+    // 3. Record History
+    const timestamp = new Date().toISOString();
+    bankingAccounts[fromUser].transactions.push({
+        type: "DEBIT",
+        amount: -amount,
+        timestamp: timestamp,
+        description: `Transfer to ${toUser}`
+    });
+
+    bankingAccounts[toUser].transactions.push({
+        type: "CREDIT",
+        amount: amount,
+        timestamp: timestamp,
+        description: `Transfer from ${fromUser}`
+    });
+
+    // 4. Feedback
+    console.log(`Transfer successful: $${amount} from ${fromUser} to ${toUser}`);
+    alert(`Transfer of $${amount} successful!`);
+
+    // Optional: Refresh the dashboard stats if needed
+    updateDashboardUI();
+}
+
+/**
+ * Utility to refresh the dashboard display
+ */
+function updateDashboardUI() {
+    // This updates the visual display if the values change
+    const depositTotal = document.getElementById("depositTotal");
+    if(depositTotal) {
+        // Logic to recalculate total deposits would go here
+    }
+}
