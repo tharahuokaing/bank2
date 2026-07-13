@@ -78,6 +78,20 @@ function handleTransfer() {
         return;
     }
 
+    // After updating balances:
+    bankingAccounts[fromUser].balance -= amount;
+    bankingAccounts[toUser].balance += amount;
+
+    // Trigger UI Updates
+    refreshTotalDeposits();
+    incrementTransactionCount();
+
+    // NEW: Trigger Notification for the recipient
+    notifyRecipient(toUser, amount);
+
+    alert(`Transfer of $${amount} successful!`);
+}
+
     // 2. Perform Transaction
     bankingAccounts[fromUser].balance -= amount;
     bankingAccounts[toUser].balance += amount;
@@ -121,4 +135,17 @@ function incrementTransactionCount() {
     transactionCount++;
     const txElement = document.getElementById("txCount");
     if (txElement) txElement.textContent = transactionCount.toLocaleString();
+}
+
+/**
+ * Triggers a visual alert for the recipient of a transfer.
+ * @param {string} username - The recipient's username.
+ * @param {number} amount - The amount received.
+ */
+function notifyRecipient(username, amount) {
+    // In a real system, you would check if this user is currently active/logged in
+    console.log(`[NOTIFICATION]: Sending alert to ${username}...`);
+    
+    // Simple visual alert for the current session
+    alert(`System Alert for ${username.toUpperCase()}:\nYou have just received $${amount.toLocaleString()}!`);
 }
