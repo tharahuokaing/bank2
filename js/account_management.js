@@ -78,6 +78,14 @@ function handleTransfer() {
         return;
     }
 
+    // Trigger UI Updates
+    refreshTotalDeposits();
+    incrementTransactionCount();
+
+    // NEW: Use the Toast instead of Alert
+    showToast(`Success: You received a transfer of $${amount.toLocaleString()}!`);
+}
+
     // After updating balances:
     bankingAccounts[fromUser].balance -= amount;
     bankingAccounts[toUser].balance += amount;
