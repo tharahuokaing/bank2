@@ -41,6 +41,18 @@ const USERS = [
     requires2FA: false
   },
    {
+    username: "chansamnang",
+    password: "chansamnang",
+    role: "Customer",
+    requires2FA: false
+  },
+   {
+    username: "raem",
+    password: "raem",
+    role: "Customer",
+    requires2FA: false
+  },
+   {
     username: "sengviseynea",
     password: "sengviseynea",
     role: "Cybersecurity",
