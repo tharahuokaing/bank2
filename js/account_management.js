@@ -149,3 +149,28 @@ function notifyRecipient(username, amount) {
     // Simple visual alert for the current session
     alert(`System Alert for ${username.toUpperCase()}:\nYou have just received $${amount.toLocaleString()}!`);
 }
+
+/**
+ * Creates a modern non-intrusive toast notification.
+ */
+function showToast(message) {
+    const container = document.getElementById("toastContainer") || createToastContainer();
+    const toast = document.createElement("div");
+    
+    toast.className = "toast";
+    toast.textContent = message;
+    
+    container.appendChild(toast);
+    
+    // Remove toast after 5 seconds
+    setTimeout(() => {
+        toast.remove();
+    }, 5000);
+}
+
+function createToastContainer() {
+    const div = document.createElement("div");
+    div.id = "toastContainer";
+    document.body.appendChild(div);
+    return div;
+}
