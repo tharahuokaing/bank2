@@ -41,8 +41,8 @@ const USERS = [
     requires2FA: false
   },
    {
-    username: "sengviseyna",
-    password: "sengviseyna",
+    username: "sengviseynea",
+    password: "sengviseynea",
     role: "Cybersecurity",
     requires2FA: false
   },
