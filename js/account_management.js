@@ -1,27 +1,27 @@
+// =====================================================
+// ACCOUNT MANAGEMENT SYSTEM - INTEGRATED
+// =====================================================
+
+let transactionCount = 4862; // Global counter
+
 /**
  * REVISED MODULE HANDLER
- * Integrates Transfer Center with QR Generation UI
  */
 function showModule(module) {
     const content = document.getElementById("moduleContent");
 
     switch(module) {
-        case "accounts":
-            // Display logic for accounts...
-            break;
-
         case "transfers":
             content.innerHTML = `
                 <h3>Transfer Center</h3>
                 <div class="transfer-form">
-                    <input id="fromAcc" type="text" placeholder="From Account (e.g. Alice)">
+                    <input id="fromAcc" type="text" placeholder="From Account">
                     <input id="toAcc" type="text" placeholder="To Account">
                     <input id="amount" type="number" placeholder="Amount">
                     <button onclick="handleTransfer()">Transfer</button>
                     <button onclick="generateBakongQR()" class="secondary-btn">Generate Bakong QR</button>
                 </div>
                 
-                <!-- QR Container (Hidden by default) -->
                 <div id="qrContainer" style="margin-top: 20px; display: none; text-align: center;">
                     <p>Scan to Pay via Bakong:</p>
                     <div class="qr-placeholder" id="qrCode"></div>
@@ -29,29 +29,23 @@ function showModule(module) {
                 </div>
             `;
             break;
-
-        case "risk":
-            // Risk logic...
-            break;
+        // Add other cases as needed
     }
 }
 
 /**
- * Triggered by the "Generate Bakong QR" button
+ * Handles QR Generation Logic
  */
 function generateBakongQR() {
     const qrContainer = document.getElementById("qrContainer");
     const qrCode = document.getElementById("qrCode");
     const txStatus = document.getElementById("txStatus");
 
-    // 1. Show UI elements
     qrContainer.style.display = "block";
     qrCode.innerHTML = "<em>Connecting to Gateway...</em>";
     txStatus.textContent = "Negotiating secure session...";
 
-    // 2. Simulate Bakong Gateway handshake delay
     setTimeout(() => {
-        // 3. Inject simulated QR pattern
         qrCode.innerHTML = `
             <div class="qr-pattern">
                 <div class="pixel"></div><div class="pixel"></div>
@@ -59,12 +53,11 @@ function generateBakongQR() {
             </div>
         `;
         txStatus.textContent = "TX-HASH: " + Math.random().toString(36).substr(2, 9).toUpperCase();
-        console.log("[BAKONG]: Secure QR pattern injected.");
     }, 1200);
 }
 
 /**
- * Executes a secure transfer between two accounts in the registry.
+ * Executes a secure transfer, records history, and updates UI
  */
 function handleTransfer() {
     const fromUser = document.getElementById("fromAcc").value.trim().toLowerCase();
@@ -76,26 +69,14 @@ function handleTransfer() {
         alert("Error: One or both accounts not found.");
         return;
     }
-
     if (isNaN(amount) || amount <= 0) {
         alert("Error: Please enter a valid transfer amount.");
         return;
     }
-
     if (bankingAccounts[fromUser].balance < amount) {
         alert("Error: Insufficient funds.");
         return;
     }
-
-    // After updating balances:
-    bankingAccounts[fromUser].balance -= amount;
-    bankingAccounts[toUser].balance += amount;
-
-    // Trigger the refresh:
-    refreshTotalDeposits();
-
-    alert(`Transfer successful!`);
-}
 
     // 2. Perform Transaction
     bankingAccounts[fromUser].balance -= amount;
@@ -109,7 +90,6 @@ function handleTransfer() {
         timestamp: timestamp,
         description: `Transfer to ${toUser}`
     });
-
     bankingAccounts[toUser].transactions.push({
         type: "CREDIT",
         amount: amount,
@@ -117,45 +97,28 @@ function handleTransfer() {
         description: `Transfer from ${fromUser}`
     });
 
-    // 4. Feedback
+    // 4. Trigger UI Updates
+    refreshTotalDeposits();
+    incrementTransactionCount();
+
     console.log(`Transfer successful: $${amount} from ${fromUser} to ${toUser}`);
     alert(`Transfer of $${amount} successful!`);
-
-    // Optional: Refresh the dashboard stats if needed
-    updateDashboardUI();
 }
 
 /**
- * Utility to refresh the dashboard display
- */
-function updateDashboardUI() {
-    // This updates the visual display if the values change
-    const depositTotal = document.getElementById("depositTotal");
-    if(depositTotal) {
-        // Logic to recalculate total deposits would go here
-    }
-}
-
-/**
- * Recalculates total deposits from the bankingAccounts registry
- * and updates the dashboard UI.
+ * UI Sync Functions
  */
 function refreshTotalDeposits() {
     let total = 0;
-
-    // Loop through all accounts in the object
     for (const username in bankingAccounts) {
-        if (bankingAccounts.hasOwnProperty(username)) {
-            total += bankingAccounts[username].balance;
-        }
+        total += bankingAccounts[username].balance;
     }
-
-    // Update the UI element
     const depositElement = document.getElementById("depositTotal");
-    if (depositElement) {
-        // Format as currency
-        depositElement.textContent = "$" + total.toLocaleString();
-    }
-    
-    console.log(`[SYSTEM]: Dashboard stats updated. Total Deposits: $${total}`);
+    if (depositElement) depositElement.textContent = "$" + total.toLocaleString();
+}
+
+function incrementTransactionCount() {
+    transactionCount++;
+    const txElement = document.getElementById("txCount");
+    if (txElement) txElement.textContent = transactionCount.toLocaleString();
 }
