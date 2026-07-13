@@ -724,3 +724,27 @@ button:hover {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.2);
 }
+
+/* QR Placeholder Aesthetic */
+.qr-placeholder {
+    width: 150px;
+    height: 150px;
+    background: white;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--accent-cyan);
+}
+
+.qr-pattern {
+    display: grid;
+    grid-template-columns: repeat(2, 40px);
+    gap: 10px;
+}
+
+.pixel {
+    width: 40px;
+    height: 40px;
+    background: #000;
+}
