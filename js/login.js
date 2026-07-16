@@ -337,8 +337,8 @@ function initializeDashboardData() {
     
     // Assuming these elements exist in your updated dashboard
     if(document.getElementById("accountCount")) {
-        document.getElementById("accountCount").textContent = "21,000";
-        document.getElementById("depositTotal").textContent = "$45,400,000";
+        document.getElementById("accountCount").textContent = "25,000";
+        document.getElementById("depositTotal").textContent = "$50,400,000";
         document.getElementById("txCount").textContent = "0";
     }
 }
