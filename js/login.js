@@ -220,7 +220,7 @@
 
                 <!-- Card 6: Interbank Network -->
                 <div class="dashboard-card">
-                    <img src="https://tharahuokaing.github.io/interbank_network/" alt="Bakong Icon" class="card-icon" style="width:24px; height:24px;">
+                    <img src="interbank_network.jpg" alt="Bakong Icon" class="card-icon" style="width:24px; height:24px;">
                     <h3>Bakong</h3>
                     <p>Connected Gateways</p>
                     <a href="https://tharahuokaing.github.io/interbank_network/" class="card-link">Gateway Status</a>
