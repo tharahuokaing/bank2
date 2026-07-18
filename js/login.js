@@ -139,7 +139,7 @@
         saveSession(session);
         renderDashboard(session);
     }
-
+   
     /* =========================================================
        DASHBOARD & VIEW CONTROLLER
     ========================================================= */
@@ -174,12 +174,90 @@
     function renderDashboardCards() {
         const container = document.getElementById("searchContainer");
         if (!container) return;
+        
         container.innerHTML = `
-            <div class="dashboard-grid">
-                <div class="dashboard-card"><h3>18</h3><p>Total Phases</p></div>
-                <div class="dashboard-card"><h3>ISO 20022</h3><p>Compliance</p></div>
-                <div class="dashboard-card"><h3>Bakong</h3><p>Connected</p></div>
-                <div class="dashboard-card"><h3>SOC</h3><p>Monitoring</p></div>
+            <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
+                
+                <!-- Card 1: Total Accounts -->
+                <div class="dashboard-card">
+                    <img src="" alt="Accounts Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3 id="accountCount">15,000</h3>
+                    <p>Total Accounts</p>
+                    <a href="#" class="card-link">View Details</a>
+                </div>
+
+                <!-- Card 2: Total Deposits -->
+                <div class="dashboard-card">
+                    <img src="" alt="Deposits Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3 id="depositTotal">$252,910,000</h3>
+                    <p>Total Deposits</p>
+                    <a href="#" class="card-link">View Details</a>
+                </div>
+
+                <!-- Card 3: Transaction Volumes -->
+                <div class="dashboard-card">
+                    <img src="" alt="Transactions Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3 id="txCount">40,000</h3>
+                    <p>Transactions Processed</p>
+                    <a href="#" class="card-link">View Log</a>
+                </div>
+
+                <!-- Card 4: System Phases -->
+                <div class="dashboard-card">
+                    <img src="" alt="Phases Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>18</h3>
+                    <p>Total Phases</p>
+                    <a href="#" class="card-link">View Phase Map</a>
+                </div>
+
+                <!-- Card 5: Financial Compliance -->
+                <div class="dashboard-card">
+                    <img src="" alt="Compliance Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>ISO 20022</h3>
+                    <p>Compliance Status</p>
+                    <a href="#" class="card-link">View Documents</a>
+                </div>
+
+                <!-- Card 6: Interbank Network -->
+                <div class="dashboard-card">
+                    <img src="" alt="Bakong Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>Bakong</h3>
+                    <p>Connected Gateways</p>
+                    <a href="#" class="card-link">Gateway Status</a>
+                </div>
+
+                <!-- Card 7: Security Architecture -->
+                <div class="dashboard-card">
+                    <img src="" alt="SOC Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>SOC</h3>
+                    <p>Monitoring Nodes</p>
+                    <a href="#" class="card-link">Live Alerts</a>
+                </div>
+
+                <!-- Card 8: Pending Clearings -->
+                <div class="dashboard-card">
+                    <img src="" alt="Clearing Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>0</h3>
+                    <p>Pending Clearings</p>
+                    <a href="#" class="card-link">Clear Queue</a>
+                </div>
+
+                <!-- Card 9: Active Audits -->
+                <div class="dashboard-card">
+                    <img src="" alt="Audits Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>Passed</h3>
+                    <p>System Audits</p>
+                    <a href="#" class="card-link">Report Vault</a>
+                </div>
+
+                <!-- Card 10: AI Core Status -->
+                <div class="dashboard-card">
+                    <img src="" alt="AI Status Icon" class="card-icon" style="width:24px; height:24px;">
+                    <h3>Operational</h3>
+                    <p>AI Core Systems</p>
+                    <a href="#" class="card-link">Core Logs</a>
+                </div>
+
             </div>
         `;
     }
@@ -202,7 +280,7 @@
             list.appendChild(li);
         });
     }
-
+   
     /* =========================================================
        SESSION MANAGEMENT & LIFE CYCLE
     ========================================================= */
