@@ -56,7 +56,7 @@ function toggleWeddingMusic() {
     if (weddingAudio.paused) {
         weddingAudio.play()
             .then(() => {
-                audioBtn.innerHTML = '🔇 បិទតន្ត្រី'; // Update label to "Mute Music"
+                audioBtn.innerHTML = '🔇'; // Update label to "Mute Music"
                 audioBtn.style.borderColor = '#800020';
             })
             .catch(error => {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (weddingAudio.paused && audioBtn.innerHTML === '🎵 ') {
             weddingAudio.play()
                 .then(() => {
-                    audioBtn.innerHTML = '🔇 បិទតន្ត្រី';
+                    audioBtn.innerHTML = '🔇';
                     audioBtn.style.borderColor = '#800020';
                 })
                 .catch(() => {
