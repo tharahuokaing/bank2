@@ -31,10 +31,6 @@
     --shadow: 0 10px 30px rgba(0, 0, 0, .35);
 }
 
-/* =========================================================
-   RESET & SYSTEM LAYOUT
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -57,10 +53,6 @@ body {
     padding: 20px;
 }
 
-/* =========================================================
-   BOOT SCREEN
-========================================================= */
-
 .boot-screen {
     position: fixed;
     inset: 0;
@@ -82,10 +74,6 @@ body {
     color: var(--accent-green);
     font-family: monospace;
 }
-
-/* =========================================================
-   HOLOGRAM PLATFORM CONTAINERS
-========================================================= */
 
 .hologram {
     max-width: 1200px;
@@ -116,10 +104,6 @@ body {
     border: 2px solid var(--accent-gold);
     box-shadow: 0 0 25px rgba(0, 229, 255, .25);
 }
-
-/* =========================================================
-   TYPOGRAPHY & DATA STRUCTURES
-========================================================= */
 
 h1, h2, h3 {
     font-weight: 700;
@@ -217,10 +201,6 @@ p {
     margin-top: 5px;
 }
 
-/* =========================================================
-   DASHBOARD LAYER OPTIMIZATIONS (60Hz - 120Hz+)
-   ========================================================= */
-
 .dashboard {
     width: 100%;
     will-change: transform;
@@ -270,10 +250,6 @@ p {
     background: rgba(0, 0, 0, 0.2);
 }
 
-/* =========================================================
-   MENU NAVIGATION & BUTTON ACTIONS
-   ========================================================= */
-
 .dashboard-menu {
     display: flex;
     gap: 10px;
@@ -322,10 +298,6 @@ button:active, .dashboard-menu button:active {
     border: none;
     border-radius: 10px;
 }
-
-/* =========================================================
-   DATA LISTS & DATATABLES
-   ========================================================= */
 
 .phases-list {
     margin-top: 30px;
@@ -381,10 +353,6 @@ td {
     margin-top: 25px;
 }
 
-/* =========================================================
-   AESTHETIC MODULE COMPONETRY
-   ========================================================= */
-
 .qr-placeholder {
     width: 150px;
     height: 150px;
@@ -407,10 +375,6 @@ td {
     height: 40px;
     background: #000;
 }
-
-/* =========================================================
-   ALERTS, RADARS & HIGH PERFORMANCE TOASTS
-   ========================================================= */
 
 #toastContainer {
     position: fixed;
@@ -458,10 +422,6 @@ td {
     50% { transform: scale(1.3) translateZ(0); opacity: 0.6; }
 }
 
-/* =========================================================
-   SYSTEM ACCESSORIES (SCROLLBAR & MEDIA QUERIES)
-   ========================================================= */
-
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -492,4 +452,65 @@ td {
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
+}
+
+:root {
+    --bg-dark: #01050e;
+    --card-bg: rgba(13, 25, 45, 0.85);
+    --accent-cyan: #00ffcc;
+    --text-white: #ffffff;
+}
+
+/* Ensure the full browser window is utilized */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+}
+
+/* The primary wrapper for the dashboard */
+#summaryBox {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding doesn't push elements out */
+}
+
+/* Fluid Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    /* Scales cards: 1 column on tiny phones, multiple on larger screens */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Responsive Card Design */
+.dashboard-card {
+    background: var(--card-bg);
+    border: 1px solid var(--accent-cyan);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 255, 204, 0.1);
+}
+
+/* Scaling text for mobile readability */
+.dashboard-card h3 {
+    font-size: clamp(1.2rem, 5vw, 2rem); 
+    margin: 10px 0;
+    color: var(--accent-cyan);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+    body { padding: 10px; }
+    .dashboard-card { padding: 15px; }
 }
