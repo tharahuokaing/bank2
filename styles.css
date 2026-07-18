@@ -755,6 +755,8 @@ button:hover {
     top: 20px;
     right: 20px;
     z-index: 9999;
+    /* Prevents the container or offscreen toasts from causing horizontal scrollbars */
+    overflow: hidden; 
 }
 
 .toast {
@@ -765,72 +767,17 @@ button:hover {
     margin-bottom: 10px;
     border-left: 5px solid var(--accent-cyan);
     box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-    animation: slideIn 0.5s ease-out;
+    
+    /* Hardware Acceleration & Layer Promotion */
+    will-change: transform;
+    transform: translate3d(100%, 0, 0); 
+    backface-visibility: hidden;         
+    
+    /* Snappy, responsive animation curve for 60Hz - 120Hz+ displays */
+    animation: slideInAndroid 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-@keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
-}
-
-/* Center Layout Wrapper */
-body {
-    background-color: #0b0f19;
-    color: #e2e8f0;
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    
-    /* Flexbox setup to center children perfectly */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-/* Base structural container for dashboard pages */
-.security-dashboard,
-.network-dashboard,
-.audit-dashboard,
-.ai-dashboard {
-    width: 100%;
-    max-width: 1400px;
-    margin: auto; /* Fallback safe centering margin */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Responsive Scaling adjustments for Mobile Viewports */
-@media (max-width: 768px) {
-    body {
-        /* Allow normal scrolling down on mobile if panels stack taller than the screen */
-        align-items: flex-start; 
-        padding: 15px;
-    }
-    
-    .metrics-row {
-        grid-template-columns: 1fr; /* Stacks structural metrics vertically */
-    }
-    
-    .panel-layout {
-        grid-template-columns: 1fr !important; /* Forces vertical panel stacking */
-        gap: 20px;
-    }
-    
-    .module-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .action-buttons {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .btn-primary, .btn-secondary {
-        flex: 1;
-        text-align: center;
-    }
+@keyframes slideInAndroid {
+    from { transform: translate3d(100%, 0, 0); }
+    to { transform: translate3d(0, 0, 0); }
 }
