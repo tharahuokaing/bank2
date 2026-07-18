@@ -514,3 +514,40 @@ html, body {
     body { padding: 10px; }
     .dashboard-card { padding: 15px; }
 }
+
+.stats-container {
+    display: flex;
+    justify-content: center; /* Centers items horizontally */
+    align-items: center;     /* Centers items vertically */
+    gap: 40px;               /* Adds breathing room between stats */
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #00ffcc; /* Matches your hologram theme */
+    background: rgba(13, 44, 84, 0.3);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;  /* Stacks label on top of value */
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #a0a0a0;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    color: #00ffcc;
+    margin-top: 5px;
+}
+
+/* Mobile responsive: Stack them if screen is narrow */
+@media (max-width: 600px) {
+    .stats-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
