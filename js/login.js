@@ -1,617 +1,259 @@
 /* ========================================================= 
    HUOKAING THARA BANKING SYSTEM
-   AUTHENTICATION CONTROLLER v5
-   Enterprise Dashboard Edition
+   AUTHENTICATION CONTROLLER v5.1 (Production Consolidation)
 ========================================================= */
 
 (() => {
+    "use strict";
 
-"use strict";
-
-/* =========================================================
-   CONFIGURATION
-========================================================= */
-
-const CONFIG = {
-    SESSION_KEY: "HT_SESSION",
-    ATTEMPT_KEY: "HT_ATTEMPTS",
-
-    MAX_ATTEMPTS: 5,
-
-    LOCKOUT_MINUTES: 5,
-
-    SESSION_TIMEOUT_MINUTES: 30
-};
-
-/* =========================================================
-   USERS
-========================================================= */
-
-const USERS = [
-  {
-    username: "huokaingthara",
-    password: "huokaingthara",
-    role: "Cybersecurity",
-    requires2FA: false
-  },
-  {
-    username: "thorn",
-    password: "thorn",
-    role: "Customer",
-    requires2FA: false
-  },
-  {
-    username: "thorn",
-    password: "thorn",
-    role: "Customer",
-    requires2FA: false
-  },
-  {
-    username: "sansopheata",
-    password: "sansopheata",
-    role: "Chief Executive Officer",
-    requires2FA: false
-  },
-   {
-    username: "chansamnang",
-    password: "chansamnang",
-    role: "Customer",
-    requires2FA: false
-  },
-   {
-    username: "raem",
-    password: "raem",
-    role: "Customer",
-    requires2FA: false
-  },
-   {
-    username: "sengviseynea",
-    password: "sengviseynea",
-    role: "Chief Executive Officer",
-    requires2FA: false
-  },
-   {
-    username: "somsodavin",
-    password: "somsodavin",
-    role: "Chief Executive Officer",
-    requires2FA: false
-  },
-  {
-    username: "svaymetrey",
-    password: "svaymetrey",
-    role: "Chief Executive Officer",
-    requires2FA: false
-  },
-  {
-    username: "chornrothanak",
-    password: "chornrothanak",
-    role: "Chief Executive Officer",
-    requires2FA: true
-  },
-  {
-    username: "longlain",
-    password: "longlain",
-    role: "Chief Executive Officer",
-    requires2FA: true
-  },
-  {
-    username: "chumchanrothanak",
-    password: "chumchanrothanak",
-    role: "Chief Executive Officer",
-    requires2FA: true
-  },
-  {
-    username: "phaychanrothana",
-    password: "phaychanrothana",
-    role: "Chief Executive Officer",
-    requires2FA: true
-  },
-  {
-    username: "vanneat",
-    password: "vanneat",
-    role: "Customer",
-    requires2FA: true
-  },
-  {
-    username: "mengly",
-    password: "mengly",
-    role: "Customer",
-    requires2FA: true
-  },
-  {
-    username: "leyu",
-    password: "leyu",
-    role: "Customer",
-    requires2FA: true
-  },
-  {
-    username: "huy",
-    password: "huy",
-    role: "Customer",
-    requires2FA: true
-  },
-  {
-    username: "sengchhat",
-    password: "sengchhat",
-    role: "VIP Customer",
-    requires2FA: true
-  }
-];
-   
-/* =========================================================
-   UTILITIES
-========================================================= */
-
-function log(message)
-{
-    console.log(
-        `[AUTH ${new Date().toLocaleTimeString()}] ${message}`
-    );
-}
-
-function generateToken()
-{
-    return crypto.randomUUID();
-}
-
-function saveSession(session)
-{
-    sessionStorage.setItem(
-        CONFIG.SESSION_KEY,
-        JSON.stringify(session)
-    );
-}
-
-function loadSession()
-{
-    const raw =
-        sessionStorage.getItem(CONFIG.SESSION_KEY);
-
-    if (!raw) return null;
-
-    try
-    {
-        return JSON.parse(raw);
-    }
-    catch
-    {
-        return null;
-    }
-}
-
-function destroySession()
-{
-    sessionStorage.removeItem(CONFIG.SESSION_KEY);
-}
-
-/* =========================================================
-   LOGIN ATTEMPTS
-========================================================= */
-
-function getAttempts()
-{
-    return JSON.parse(
-        localStorage.getItem(CONFIG.ATTEMPT_KEY)
-    ) || {
-        count: 0,
-        lockUntil: null
+    /* =========================================================
+       CONFIGURATION
+    ========================================================= */
+    const CONFIG = {
+        SESSION_KEY: "HT_SESSION",
+        ATTEMPT_KEY: "HT_ATTEMPTS",
+        MAX_ATTEMPTS: 5,
+        LOCKOUT_MINUTES: 5,
+        SESSION_TIMEOUT_MINUTES: 30
     };
-}
 
-function saveAttempts(data)
-{
-    localStorage.setItem(
-        CONFIG.ATTEMPT_KEY,
-        JSON.stringify(data)
-    );
-}
-
-function clearAttempts()
-{
-    localStorage.removeItem(CONFIG.ATTEMPT_KEY);
-}
-
-function isLocked()
-{
-    const data = getAttempts();
-
-    if (!data.lockUntil)
-        return false;
-
-    if (Date.now() > data.lockUntil)
-    {
-        clearAttempts();
-        return false;
+    /* =========================================================
+       USERS DB (Hardcoded Mock)
+    ========================================================= */
+    const USERS = [
+        { username: "huokaingthara", password: "huokaingthara", role: "Cybersecurity", requires2FA: false },
+        { username: "thorn", password: "thorn", role: "Customer", requires2FA: false },
+        { username: "sansopheata", password: "sansopheata", role: "Chief Executive Officer", requires2FA: false },
+        { username: "chansamnang", password: "chansamnang", role: "Customer", requires2FA: false },
+        { username: "raem", password: "raem", role: "Customer", requires2FA: false },
+        { username: "sengviseynea", password: "sengviseynea", role: "Chief Executive Officer", requires2FA: false },
+        { username: "somsodavin", password: "somsodavin", role: "Chief Executive Officer", requires2FA: false },
+        { username: "svaymetrey", password: "svaymetrey", role: "Chief Executive Officer", requires2FA: false },
+        { username: "chornrothanak", password: "chornrothanak", role: "Chief Executive Officer", requires2FA: true },
+        { username: "longlain", password: "longlain", role: "Chief Executive Officer", requires2FA: true },
+        { username: "chumchanrothanak", password: "chumchanrothanak", role: "Chief Executive Officer", requires2FA: true },
+        { username: "phaychanrothana", password: "phaychanrothana", role: "Chief Executive Officer", requires2FA: true },
+        { username: "vanneat", password: "vanneat", role: "Customer", requires2FA: true },
+        { username: "mengly", password: "mengly", role: "Customer", requires2FA: true },
+        { username: "leyu", password: "leyu", role: "Customer", requires2FA: true },
+        { username: "huy", password: "huy", role: "Customer", requires2FA: true },
+        { username: "sengchhat", password: "sengchhat", role: "VIP Customer", requires2FA: true }
+    ];
+   
+    /* =========================================================
+       UTILITIES & SESSION HANDLING
+    ========================================================= */
+    function log(message) {
+        console.log(`[AUTH ${new Date().toLocaleTimeString()}] ${message}`);
     }
 
-    return true;
-}
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-async function handleLogin(username,password)
-{
-    const msg =
-        document.getElementById("loginMessage");
-
-    msg.textContent = "";
-
-    if (!username || !password)
-    {
-        msg.textContent =
-            "Please enter username and password.";
-
-        return;
+    function saveSession(session) {
+        sessionStorage.setItem(CONFIG.SESSION_KEY, JSON.stringify(session));
     }
 
-    if (isLocked())
-    {
-        msg.textContent =
-            "Account temporarily locked.";
-
-        return;
+    function loadSession() {
+        const raw = sessionStorage.getItem(CONFIG.SESSION_KEY);
+        if (!raw) return null;
+        try { return JSON.parse(raw); } catch { return null; }
     }
 
-    const user =
-        USERS.find(
-            u =>
-            u.username === username &&
-            u.password === password
-        );
+    function destroySession() {
+        sessionStorage.removeItem(CONFIG.SESSION_KEY);
+    }
 
-    if (!user)
-    {
+    /* =========================================================
+       RATE LIMITER / LOCKOUT CONTROLLER
+    ========================================================= */
+    function getAttempts() {
+        return JSON.parse(localStorage.getItem(CONFIG.ATTEMPT_KEY)) || { count: 0, lockUntil: null };
+    }
+
+    function saveAttempts(data) {
+        localStorage.setItem(CONFIG.ATTEMPT_KEY, JSON.stringify(data));
+    }
+
+    function clearAttempts() {
+        localStorage.removeItem(CONFIG.ATTEMPT_KEY);
+    }
+
+    function isLocked() {
         const data = getAttempts();
+        if (!data.lockUntil) return false;
+        if (Date.now() > data.lockUntil) {
+            clearAttempts();
+            return false;
+        }
+        return true;
+    }
 
-        data.count++;
+    /* =========================================================
+       AUTHENTICATION CORE LOGIC
+    ========================================================= */
+    async function handleLogin(username, password) {
+        const msg = document.getElementById("loginMessage");
+        if (msg) msg.textContent = "";
 
-        if (data.count >= CONFIG.MAX_ATTEMPTS)
-        {
-            data.lockUntil =
-                Date.now() +
-                CONFIG.LOCKOUT_MINUTES * 60000;
-
-            saveAttempts(data);
-
-            msg.textContent =
-                "Too many failed logins.";
-
+        if (!username || !password) {
+            if (msg) msg.textContent = "Please enter username and password.";
             return;
         }
 
-        saveAttempts(data);
+        if (isLocked()) {
+            if (msg) msg.textContent = "Account temporarily locked.";
+            return;
+        }
 
-        msg.textContent =
-            `Invalid credentials (${data.count}/${CONFIG.MAX_ATTEMPTS})`;
+        const user = USERS.find(u => u.username === username && u.password === password);
 
-        return;
+        if (!user) {
+            const data = getAttempts();
+            data.count++;
+            if (data.count >= CONFIG.MAX_ATTEMPTS) {
+                data.lockUntil = Date.now() + (CONFIG.LOCKOUT_MINUTES * 60000);
+                saveAttempts(data);
+                if (msg) msg.textContent = "Too many failed logins.";
+                return;
+            }
+            saveAttempts(data);
+            if (msg) msg.textContent = `Invalid credentials (${data.count}/${CONFIG.MAX_ATTEMPTS})`;
+            return;
+        }
+
+        clearAttempts();
+
+        // 2FA Security check
+        if (user.requires2FA && typeof start2FA === "function") {
+            start2FA(() => finalizeLogin(user));
+            return;
+        }
+
+        finalizeLogin(user);
     }
 
-    clearAttempts();
-
-    if (
-        user.requires2FA &&
-        typeof start2FA === "function"
-    )
-    {
-        start2FA(
-            () => finalizeLogin(user)
-        );
-
-        return;
+    function finalizeLogin(user) {
+        const session = {
+            username: user.username,
+            role: user.role,
+            token: crypto.randomUUID()
+        };
+        saveSession(session);
+        renderDashboard(session);
     }
 
-    finalizeLogin(user);
-}
-
-/* =========================================================
-   REVISED LOGIN LOGIC
-   ========================================================= */
-
-const loginForm = document.getElementById("loginForm");
-
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    // Simple validation placeholder
-    const username = document.getElementById("usernameInput").value;
-    
-    if (username) {
-        // 1. Hide Login
-        document.getElementById("loginContainer").style.display = "none";
-        
-        // 2. Show Dashboard
+    /* =========================================================
+       DASHBOARD & VIEW CONTROLLER
+    ========================================================= */
+    function renderDashboard(session) {
+        const login = document.getElementById("loginContainer");
         const dashboard = document.getElementById("summaryBox");
-        dashboard.style.display = "block";
-        
-        // 3. Initialize Dashboard Data
+
+        if (login) login.style.display = "none";
+        if (dashboard) dashboard.style.display = "block";
+
+        updateAIStatus(session);
         initializeDashboardData();
-    }
-});
-
-function initializeDashboardData() {
-    // Injecting account balances dynamically
-    console.log("Dashboard active. Injecting financial records...");
-    
-    // Assuming these elements exist in your updated dashboard
-    if(document.getElementById("accountCount")) {
-        document.getElementById("accountCount").textContent = "15,000";
-        document.getElementById("depositTotal").textContent = "$252,910,000";
-        document.getElementById("txCount").textContent = "40,000";
-    }
-}
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-function renderDashboard(session)
-{
-    const login =
-        document.getElementById(
-            "loginContainer"
-        );
-
-    const dashboard =
-        document.getElementById(
-            "summaryBox"
-        );
-
-    if (!login || !dashboard)
-        return;
-
-    login.style.display = "none";
-
-    dashboard.style.display = "block";
-
-    updateAIStatus(session);
-
-    renderDashboardCards();
-
-    renderPhaseList();
-}
-
-function updateAIStatus(session)
-{
-    const bubble =
-        document.getElementById(
-            "aiStatusBubble"
-        );
-
-    if (!bubble)
-        return;
-
-    bubble.innerHTML =
-    `
-        AI CORE ONLINE •
-        USER: ${session.username}
-        • ROLE: ${session.role}
-    `;
-}
-
-function renderDashboardCards()
-{
-    const container =
-        document.getElementById(
-            "searchContainer"
-        );
-
-    if (!container)
-        return;
-
-    container.innerHTML =
-    `
-        <div class="dashboard-grid">
-
-            <div class="dashboard-card">
-                <h3>18</h3>
-                <p>Total Phases</p>
-            </div>
-
-            <div class="dashboard-card">
-                <h3>ISO 20022</h3>
-                <p>Compliance</p>
-            </div>
-
-            <div class="dashboard-card">
-                <h3>Bakong</h3>
-                <p>Connected</p>
-            </div>
-
-            <div class="dashboard-card">
-                <h3>SOC</h3>
-                <p>Monitoring</p>
-            </div>
-
-        </div>
-    `;
-}
-
-/* =========================================================
-   PHASES
-========================================================= */
-
-function renderPhaseList()
-{
-    const list =
-        document.getElementById(
-            "phasesList"
-        );
-
-    if (!list)
-        return;
-
-    list.innerHTML = "";
-
-    if (
-        !window.PhaseRegistry ||
-        !PhaseRegistry.getAll
-    )
-    {
-        list.innerHTML =
-            "<li>No phases loaded.</li>";
-
-        return;
+        renderDashboardCards();
+        renderPhaseList();
     }
 
-    PhaseRegistry
-        .getAll()
-        .forEach(phase =>
-        {
-            const li =
-                document.createElement("li");
+    function initializeDashboardData() {
+        log("Dashboard active. Injecting financial records...");
+        if (document.getElementById("accountCount")) {
+            document.getElementById("accountCount").textContent = "15,000";
+            document.getElementById("depositTotal").textContent = "$252,910,000";
+            document.getElementById("txCount").textContent = "40,000";
+        }
+    }
 
-            li.className =
-                "phase-item";
+    function updateAIStatus(session) {
+        const bubble = document.getElementById("aiStatusBubble");
+        if (!bubble) return;
+        bubble.innerHTML = `AI CORE ONLINE • USER: ${session.username} • ROLE: ${session.role}`;
+    }
 
-            li.innerHTML =
-            `
-            ${phase.name}
-            <span>
-            ${phase.status}
-            </span>
-            `;
+    function renderDashboardCards() {
+        const container = document.getElementById("searchContainer");
+        if (!container) return;
+        container.innerHTML = `
+            <div class="dashboard-grid">
+                <div class="dashboard-card"><h3>18</h3><p>Total Phases</p></div>
+                <div class="dashboard-card"><h3>ISO 20022</h3><p>Compliance</p></div>
+                <div class="dashboard-card"><h3>Bakong</h3><p>Connected</p></div>
+                <div class="dashboard-card"><h3>SOC</h3><p>Monitoring</p></div>
+            </div>
+        `;
+    }
 
-            li.onclick = () =>
-            {
-                if (
-                    typeof phase.render ===
-                    "function"
-                )
-                {
-                    phase.render();
-                }
+    function renderPhaseList() {
+        const list = document.getElementById("phasesList");
+        if (!list || !window.PhaseRegistry || !PhaseRegistry.getAll) {
+            if (list) list.innerHTML = "<li>No phases loaded.</li>";
+            return;
+        }
+
+        list.innerHTML = "";
+        PhaseRegistry.getAll().forEach(phase => {
+            const li = document.createElement("li");
+            li.className = "phase-item";
+            li.innerHTML = `${phase.name} <span>${phase.status}</span>`;
+            li.onclick = () => {
+                if (typeof phase.render === "function") phase.render();
             };
-
             list.appendChild(li);
         });
-}
+    }
 
-/* =========================================================
-   LOGOUT
-========================================================= */
+    /* =========================================================
+       SESSION MANAGEMENT & LIFE CYCLE
+    ========================================================= */
+    function logout() {
+        destroySession();
+        location.reload();
+    }
 
-function logout()
-{
-    destroySession();
+    function restoreSession() {
+        const session = loadSession();
+        if (session) renderDashboard(session);
+    }
 
-    location.reload();
-}
+    function startSessionTimer() {
+        let timeout;
+        const reset = () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                alert("Session expired.");
+                logout();
+            }, CONFIG.SESSION_TIMEOUT_MINUTES * 60000);
+        };
+        document.addEventListener("mousemove", reset);
+        document.addEventListener("keypress", reset);
+        reset();
+    }
 
-/* =========================================================
-   SESSION RESTORE
-========================================================= */
-
-function restoreSession()
-{
-    const session =
-        loadSession();
-
-    if (!session)
-        return;
-
-    renderDashboard(session);
-}
-
-/* =========================================================
-   SESSION TIMEOUT
-========================================================= */
-
-function startSessionTimer()
-{
-    let timeout;
-
-    const reset = () =>
-    {
-        clearTimeout(timeout);
-
-        timeout =
-        setTimeout(() =>
-        {
-            alert(
-                "Session expired."
-            );
-
-            logout();
-
-        },
-        CONFIG.SESSION_TIMEOUT_MINUTES
-        * 60000);
-    };
-
-    document.addEventListener(
-        "mousemove",
-        reset
-    );
-
-    document.addEventListener(
-        "keypress",
-        reset
-    );
-
-    reset();
-}
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () =>
-    {
-        const form =
-            document.getElementById(
-                "loginForm"
-            );
-
-        if (form)
-        {
-            form.addEventListener(
-                "submit",
-                e =>
-                {
-                    e.preventDefault();
-
-                    handleLogin(
-                        document
-                            .getElementById(
-                                "usernameInput"
-                            )
-                            .value
-                            .trim(),
-
-                        document
-                            .getElementById(
-                                "passwordInput"
-                            )
-                            .value
-                            .trim()
-                    );
-                }
-            );
+    /* =========================================================
+       INITIALIZATION
+    ========================================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("loginForm");
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const userVal = document.getElementById("usernameInput")?.value.trim();
+                const passVal = document.getElementById("passwordInput")?.value.trim();
+                handleLogin(userVal, passVal);
+            });
         }
 
         restoreSession();
-
         startSessionTimer();
 
-        document
-            .getElementById("logoutBtn")
-            ?.addEventListener(
-                "click",
-                logout
-            );
-    }
-);
+        document.getElementById("logoutBtn")?.addEventListener("click", logout);
+    });
 
-/* =========================================================
-   GLOBALS
-========================================================= */
-
-window.logout = logout;
-window.handleLogin = handleLogin;
+    /* =========================================================
+       GLOBALS
+    ========================================================= */
+    window.logout = logout;
+    window.handleLogin = handleLogin;
 
 })();
