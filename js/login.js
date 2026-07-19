@@ -161,8 +161,8 @@
     function initializeDashboardData() {
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
-            document.getElementById("accountCount").textContent = "15,000";
-            document.getElementById("depositTotal").textContent = "$352,910,000";
+            document.getElementById("accountCount").textContent = "27,000";
+            document.getElementById("depositTotal").textContent = "$452,910,000";
             document.getElementById("txCount").textContent = "40,000";
         }
     }
@@ -183,7 +183,7 @@
                 <!-- Card 1: Total Accounts -->
                 <div class="dashboard-card">
                     <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="accountCount">25,000</h3>
+                    <h3 id="accountCount">27,000</h3>
                     <p>Total Accounts</p>
                     <a href="https://tharahuokaing.github.io/total_account/" class="card-link">View Details</a>
                 </div>
@@ -191,7 +191,7 @@
                 <!-- Card 2: Total Deposits -->
                 <div class="dashboard-card">
                     <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="depositTotal">$252,910,000</h3>
+                    <h3 id="depositTotal">$452,910,000</h3>
                     <p>Total Deposits</p>
                     <a href="https://tharahuokaing.github.io/deposit/" class="card-link">View Details</a>
                 </div>
