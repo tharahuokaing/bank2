@@ -265,12 +265,12 @@
                 </div>
 
                 <!-- Card 11: Withdrawal Control -->
-                <div class="dashboard-card">
-                    <img src="withdrawal.png" alt="Withdrawal Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>Operational</h3>
-                    <p>Withdrawal</p>
-                    <a href="https://tharahuokaing.github.io/withdrawal/" class="card-link">Transaction History</a>
-                </div>
+               <div class="dashboard-card">
+                   <img src="withdrawal.png" alt="Withdrawal Icon" class="card-icon" style="width: 150px; height: 150px;">
+                   <h3>Operational</h3>
+                   <p>Withdrawal</p>
+                   <a href="https://tharahuokaing.github.io/withdrawal/" class="card-link">Transaction History</a>
+               </div>
                 
             </div>
         `;
