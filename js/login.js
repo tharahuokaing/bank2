@@ -42,6 +42,7 @@
         { username: "mengly", password: "mengly", role: "Customer", requires2FA: true },
         { username: "leyu", password: "leyu", role: "Customer", requires2FA: true },
         { username: "huy", password: "huy", role: "Customer", requires2FA: true },
+        { username: "sengchhat1", password: "sengchhat1", role: "Credit Officer", requires2FA: true },
         { username: "sengchhat", password: "sengchhat", role: "Director", requires2FA: true }
     ];
    
