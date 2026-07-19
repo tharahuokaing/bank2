@@ -264,6 +264,19 @@
                     <a href="https://tharahuokaing.github.io/ai_core/" class="card-link">Core Logs</a>
                 </div>
 
+                <!-- Card: Withdrawal Control -->
+               <div class="dashboard-card">
+                  <div class="card-icon-placeholder" style="width:150px; height:150px; background-color: #0f172a; border: 2px solid #ef4444; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; border-radius: 10px;">
+                     <span style="color: #ef4444; font-size: 2rem;">-$</span>
+                  </div>
+                  <h3>Withdrawal</h3>
+                  <p>Execute Debit Transaction</p>
+                  <!-- Triggers the WithdrawalHandler defined in withdrawal.js -->
+                  <a href="#" class="card-link" onclick="WithdrawalModule.processWithdrawal(prompt('Enter amount to withdraw:'))">
+                      Process Debit
+                   </a>
+               </div>
+
             </div>
         `;
     }
