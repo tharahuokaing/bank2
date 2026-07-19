@@ -25,7 +25,7 @@
         { username: "mek", password: "mek", role: "Customer", requires2FA: false },
         { username: "test2", password: "test2", role: "Customer", requires2FA: false },
         { username: "test3", password: "test3", role: "Test Customer", requires2FA: false },
-        { username: "test4", password: "test4", role: "Test Customer", requires2FA: false }  
+        { username: "test4", password: "test4", role: "Test Customer", requires2FA: false },
         { username: "thorn", password: "thorn", role: "Customer", requires2FA: false },
         { username: "sansopheata", password: "sansopheata", role: "Chief Executive Officer", requires2FA: false },
         { username: "chansamnang", password: "chansamnang", role: "Customer", requires2FA: false },
