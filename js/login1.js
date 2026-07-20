@@ -165,9 +165,9 @@
     function initializeDashboardData() {
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
-            document.getElementById("accountCount").textContent = "80,000";
-            document.getElementById("depositTotal").textContent = "$1,552,910,000";
-            document.getElementById("txCount").textContent = "40,000";
+            document.getElementById("accountCount").textContent = "$80,000";
+            document.getElementById("depositTotal").textContent = "$1,852,910,000";
+            document.getElementById("txCount").textContent = "$40,000";
         }
     }
 
@@ -187,7 +187,7 @@
                 <!-- Card 1: Total Accounts -->
                 <div class="dashboard-card">
                     <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="accountCount">80,000</h3>
+                    <h3 id="accountCount">$80,000</h3>
                     <p>Total Accounts</p>
                     <a href="https://tharahuokaing.github.io/total_account/" class="card-link">View Details</a>
                 </div>
@@ -195,7 +195,7 @@
                 <!-- Card 2: Total Deposits -->
                 <div class="dashboard-card">
                     <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="depositTotal">$1,552,910,000</h3>
+                    <h3 id="depositTotal">$1,852,910,000</h3>
                     <p>Total Deposits</p>
                     <a href="https://tharahuokaing.github.io/deposit/" class="card-link">View Details</a>
                 </div>
@@ -203,7 +203,7 @@
                 <!-- Card 3: Transaction Volumes -->
                 <div class="dashboard-card">
                     <img src="transaction_volumn.jpg" alt="Transactions Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="txCount">40,000</h3>
+                    <h3 id="txCount">$40,000</h3>
                     <p>Transactions Processed</p>
                     <a href="https://tharahuokaing.github.io/transaction/" class="card-link">View Log</a>
                 </div>
