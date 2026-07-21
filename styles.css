@@ -958,3 +958,11 @@ body {
         width: 95%;
     }
 }
+
+.card-link {
+    font-size: 1.1rem;         /* Increases text size */
+    font-weight: 600;          /* Makes text bolder */
+    padding: 8px 16px;         /* Adds breathing room/button feel */
+    display: inline-block;     /* Enables padding to take effect properly */
+    text-decoration: none;
+}
