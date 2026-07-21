@@ -45,40 +45,56 @@
 
     <!-- DASHBOARD -->
     <div id="summaryBox" class="hologram dashboard" style="display:none;">
-    <header class="dashboard-header">
-        <h2>🏦 HUOKAING THARA BANK 2</h2>
-    </header>
+        
+        <!-- Top Management Header with Language Switcher -->
+        <header class="dashboard-header module-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="title-area">
+                <h2 data-i18n="title">🏦 HUOKAING THARA BANK 2</h2>
+                <p data-i18n="subtitle" style="font-size: 0.85rem; color: #94a3b8; margin: 0;">Huokaing Thara Banking System • System Monitoring Panel</p>
+            </div>
+            <div class="action-buttons" style="display: flex; gap: 15px; align-items: center;">
+                <!-- Language Switcher Dropdown -->
+                <select id="langSelect" class="lang-selector" onchange="LocalizationEngine.setLanguage(this.value)" style="background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; outline: none;">
+                    <option value="en">English</option>
+                    <option value="km">ភាសាខ្មែរ</option>
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="fr">Français</option>
+                </select>
+                <button id="refreshDataBtn" class="btn-secondary" data-i18n="refresh" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold;">Re-Synchronize</button>
+            </div>
+        </header>
 
-    <div class="stats-container">
-    <div class="stat-item">
-        <span class="stat-label">TOTAL ACCOUNTS</span>
-        <span class="stat-value" id="accountCount">15,000</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-label">TOTAL DEPOSITS</span>
-        <span class="stat-value" id="depositTotal">$252,910,000</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-label">TRANSACTIONS</span>
-        <span class="stat-value" id="txCount">40,000</span>
-    </div>
-    </div>  
-    
-    <div id="moduleContent"></div>
-</div>
+        <!-- Stats Overview Row -->
+        <div class="stats-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
+            <div class="stat-item" style="background: #1e293b; padding: 15px; border-radius: 10px;">
+                <span class="stat-label" style="color: #94a3b8; font-size: 0.8rem;">TOTAL ACCOUNTS</span>
+                <span class="stat-value" id="accountCount" style="font-size: 1.5rem; font-weight: bold; display: block; margin-top: 5px;">15,000</span>
+            </div>
+            <div class="stat-item" style="background: #1e293b; padding: 15px; border-radius: 10px;">
+                <span class="stat-label" style="color: #94a3b8; font-size: 0.8rem;" data-i18n="totalCapital">TOTAL DEPOSITS</span>
+                <span class="stat-value" id="depositTotal" style="font-size: 1.5rem; font-weight: bold; display: block; margin-top: 5px; color: #fbbf24;">$252,910,000</span>
+            </div>
+            <div class="stat-item" style="background: #1e293b; padding: 15px; border-radius: 10px;">
+                <span class="stat-label" style="color: #94a3b8; font-size: 0.8rem;">TRANSACTIONS</span>
+                <span class="stat-value" id="txCount" style="font-size: 1.5rem; font-weight: bold; display: block; margin-top: 5px;">40,000</span>
+            </div>
+        </div>  
+        
+        <!-- Module and Dynamic Content Area -->
+        <div id="moduleContent"></div>
         <div id="searchContainer" class="dashboard-grid"></div>
         <ol id="phasesList" class="phases-list"></ol>
         <section id="phaseChecklistContainer" class="phase-checklist"></section>
 
-        <footer class="dashboard-controls">
-            <button id="logoutBtn">Logout</button>
+        <!-- Dashboard Footer Controls -->
+        <footer class="dashboard-controls" style="margin-top: 30px; text-align: right;">
+            <button id="logoutBtn" style="background: #ef4444; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">Logout</button>
         </footer>
     </div>
 
     <div id="systemHeartbeat" class="heartbeat-indicator" aria-hidden="true"></div>
 
-    <!-- SCRIPTS --> 
-    <!-- Order matters: Core logic first, UI/Feature scripts second -->
+    <!-- SCRIPTS -->  
     <script src="js/phase_core.js"></script>
     <script src="js/login.js"></script>
     <script src="js/account_management.js"></script>
@@ -91,8 +107,8 @@
     <script src="js/charter_logic.js"></script>
     <script src="js/stress_test.js"></script>
     <script src="js/ultra_secure_mode.js"></script>
+    <script src="i18n.js"></script>
     <script src="music.js"></script>
-    
 
     <script>
         document.addEventListener("bankSystemReady", () => {
@@ -108,4 +124,3 @@
     </script>
 </body>
 </html>
-    
