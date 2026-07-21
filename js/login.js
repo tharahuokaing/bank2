@@ -189,7 +189,7 @@
                     <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
                     <h3 id="accountCount">$90,000</h3>
                     <p>Total Accounts</p>
-                    <a href="https://tharahuokaing.github.io/total_account/" class="card-link">View Details</a>
+                    <a href="https://tharahuokaing.github.io/total_account/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Details</a>
                 </div>
 
                 <!-- Card 2: Total Deposits -->
