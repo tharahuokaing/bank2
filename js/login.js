@@ -166,7 +166,7 @@
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
             document.getElementById("accountCount").textContent = "$0";
-            document.getElementById("depositTotal").textContent = "$0";
+            document.getElementById("depositTotal").textContent = "$10,000,000";
             document.getElementById("txCount").textContent = "$0";
         }
     }
@@ -195,7 +195,7 @@
                 <!-- Card 2: Total Deposits -->
                 <div class="dashboard-card">
                     <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="depositTotal">$0</h3>
+                    <h3 id="depositTotal">$10,000,000</h3>
                     <p>Total Deposits</p>
                     <a href="https://tharahuokaing.github.io/deposit/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Details</a>
                 </div>
