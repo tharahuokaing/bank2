@@ -482,45 +482,20 @@ td {
     }
 }
 
-/* =========================================================
-   HUOKAING THARA BANKING SYSTEM 2 - 4-FUNCTION ROW & STATS STYLING
-========================================================= */
-
-/* Four-Function Single Row Container */
-.four-column-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+/* Ensure the dashboard container fits snugly without scaling issues */
+#summaryBox.dashboard {
     width: 100%;
-    margin: 20px 0;
-    box-sizing: border-box;
-}
-
-/* Individual Function Card Style */
-.function-card {
-    background: #1e293b;
-    border: 1px solid rgba(0, 255, 204, 0.3);
-    border-radius: 12px;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 15px;
-    text-align: center;
     box-sizing: border-box;
-    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.function-card:hover {
-    transform: translateY(-3px);
-    border-color: #00ffcc;
-}
-
-/* Responsive Media Queries for Mobile/Android Viewports */
-@media (max-width: 900px) {
-    .four-column-row {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 500px) {
-    .four-column-row {
-        grid-template-columns: 1fr;
-    }
+/* Prevent any internal grid or card from forcing horizontal page zoom */
+.dashboard-grid, .four-column-row {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
 }
