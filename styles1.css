@@ -454,67 +454,6 @@ td {
     }
 }
 
-:root {
-    --bg-dark: #01050e;
-    --card-bg: rgba(13, 25, 45, 0.85);
-    --accent-cyan: #00ffcc;
-    --text-white: #ffffff;
-}
-
-/* Ensure the full browser window is utilized */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-dark);
-    color: var(--text-white);
-    font-family: 'Courier New', Courier, monospace;
-    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
-}
-
-/* The primary wrapper for the dashboard */
-#summaryBox {
-    width: 100vw;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box; /* Ensures padding doesn't push elements out */
-}
-
-/* Fluid Dashboard Grid */
-.dashboard-grid {
-    display: grid;
-    /* Scales cards: 1 column on tiny phones, multiple on larger screens */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* Responsive Card Design */
-.dashboard-card {
-    background: var(--card-bg);
-    border: 1px solid var(--accent-cyan);
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 255, 204, 0.1);
-}
-
-/* Scaling text for mobile readability */
-.dashboard-card h3 {
-    font-size: clamp(1.2rem, 5vw, 2rem); 
-    margin: 10px 0;
-    color: var(--accent-cyan);
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 480px) {
-    body { padding: 10px; }
-    .dashboard-card { padding: 15px; }
-}
-
 .stats-container {
     display: flex;
     justify-content: center; /* Centers items horizontally */
