@@ -958,3 +958,15 @@ body {
         width: 95%;
     }
 }
+
+.dashboard-card a.card-wrapper-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard-card a.card-wrapper-link:hover h3 {
+    color: #38bdf8; /* Optional: adds a hover accent color to match your theme */
+}
