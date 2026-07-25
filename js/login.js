@@ -287,7 +287,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/withdrawal/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="withdrawal.jpg" alt="Withdrawal Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
-                        <h3>Phase 11</h3>
+                        <h3>Withdrawal</h3>
                         <p>Secure Withdrawal</p>
                         <span class="card-link">Open Module</span>
                     </a>
@@ -297,7 +297,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/qr_scanner/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="qr.jpg" alt="QR Scanner Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
-                        <h3>Phase 12</h3>
+                        <h3>QR Code</h3>
                         <p>QR Scanner & Upload</p>
                         <span class="card-link">Open Module</span>
                     </a>
