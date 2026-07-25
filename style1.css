@@ -1,4 +1,4 @@
-/* =========================================================
+/* ========================================================= 
    HUOKAING THARA BANK
    Enterprise Banking Operating Platform
    Version 5.0 - Cyber-Secure Financial Ledger Theme
@@ -39,6 +39,7 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body {
@@ -51,6 +52,8 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .boot-screen {
@@ -182,25 +185,6 @@ p {
     border-left: 5px solid var(--accent-cyan);
 }
 
-.stat-item {
-    text-align: center;
-}
-
-.stat-item small {
-    display: block;
-    color: var(--accent-gold);
-    text-transform: uppercase;
-    font-size: 0.7em;
-    letter-spacing: 2px;
-}
-
-.stat-value {
-    font-size: 1.5em;
-    color: var(--accent-cyan);
-    text-shadow: 0 0 8px var(--accent-cyan);
-    margin-top: 5px;
-}
-
 .dashboard {
     width: 100%;
     will-change: transform;
@@ -212,6 +196,7 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
     margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .card {
@@ -431,6 +416,44 @@ td {
     border-radius: 8px;
 }
 
+/* Centered Stats Container Layout Configuration */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 25px 0;
+    padding: 20px;
+    border: 1px solid var(--accent-cyan);
+    background: rgba(13, 44, 84, 0.4);
+    border-radius: 14px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    color: var(--accent-cyan);
+    margin-top: 5px;
+    text-shadow: 0 0 6px var(--hologram-glow);
+}
+
+/* Responsive Media Query Adjustments */
 @media(max-width: 768px) {
     .dashboard-menu {
         flex-direction: column;
@@ -446,47 +469,15 @@ td {
 
     .hologram {
         padding: 20px;
-        margin: 20px;
+        margin: 10px;
     }
 
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
-}
 
-.stats-container {
-    display: flex;
-    justify-content: center; /* Centers items horizontally */
-    align-items: center;     /* Centers items vertically */
-    gap: 40px;               /* Adds breathing room between stats */
-    margin: 20px 0;
-    padding: 20px;
-    border: 1px solid #00ffcc; /* Matches your hologram theme */
-    background: rgba(13, 44, 84, 0.3);
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;  /* Stacks label on top of value */
-    align-items: center;
-}
-
-.stat-label {
-    font-size: 0.7rem;
-    color: #a0a0a0;
-    letter-spacing: 1px;
-}
-
-.stat-value {
-    font-size: 1.2rem;
-    color: #00ffcc;
-    margin-top: 5px;
-}
-
-/* Mobile responsive: Stack them if screen is narrow */
-@media (max-width: 600px) {
     .stats-container {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
     }
 }
