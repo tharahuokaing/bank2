@@ -1,5 +1,5 @@
 /* ========================================================= 
-   HUOKAING THARA BANKING SYSTEM 1
+   HUOKAING THARA BANKING SYSTEM 2
    AUTHENTICATION CONTROLLER v5.1 (Production Consolidation - Full Card Redirection)
 ========================================================= */
 
