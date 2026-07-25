@@ -283,7 +283,7 @@
                     </a>
                 </div>
 
-                <!-- Card 11: Phase 11 Withdrawal -->
+                <!-- Card 11: Withdrawal -->
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/withdrawal/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="withdrawal.jpg" alt="Withdrawal Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
@@ -293,12 +293,32 @@
                     </a>
                 </div>
 
-                <!-- Card 12: Phase 12 QR Scanner -->
+                <!-- Card 12: QR Code Scanner -->
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/qr_scanner/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="qr.jpg" alt="QR Scanner Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
                         <h3>QR Code</h3>
                         <p>QR Scanner & Upload</p>
+                        <span class="card-link">Open Module</span>
+                    </a>
+                </div>
+
+                <!-- Card 13: Legend Cinema Portal -->
+                <div class="dashboard-card">
+                    <a href="https://tharahuokaing.github.io/cinema/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="cinema.jpg" alt="Cinema Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
+                        <h3>Cinema</h3>
+                        <p>Legend Booking & Pay</p>
+                        <span class="card-link">Open Module</span>
+                    </a>
+                </div>
+
+                <!-- Card 14: Global Currency Calculator -->
+                <div class="dashboard-card">
+                    <a href="https://tharahuokaing.github.io/calculator/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="calculator.jpg" alt="Calculator Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
+                        <h3>Calculator</h3>
+                        <p>Global Rate Converter</p>
                         <span class="card-link">Open Module</span>
                     </a>
                 </div>
