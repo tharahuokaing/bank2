@@ -1,6 +1,6 @@
-/* =========================================================
-   HUOKAING THARA BANKING SYSTEM
-   AUTHENTICATION CONTROLLER v5.1 (Production Consolidation)
+/* ========================================================= 
+   HUOKAING THARA BANKING SYSTEM 1
+   AUTHENTICATION CONTROLLER v5.1 (Production Consolidation - Full Card Redirection)
 ========================================================= */
 
 (() => {
@@ -22,8 +22,9 @@
     ========================================================= */
     const USERS = [
         { username: "huokaingthara", password: "huokaingthara", role: "Cybersecurity", requires2FA: false },
-        { username: "mek", password: "mek", role: "Customer", requires2FA: false },
         { username: "kuo", password: "kuo", role: "Customer", requires2FA: false },
+        { username: "mek", password: "mek", role: "Customer", requires2FA: false },
+        { username: "test", password: "test", role: "Test Customer", requires2FA: false },
         { username: "thorn", password: "thorn", role: "Customer", requires2FA: false },
         { username: "sansopheata", password: "sansopheata", role: "Chief Executive Officer", requires2FA: false },
         { username: "chansamnang", password: "chansamnang", role: "Customer", requires2FA: false },
@@ -43,7 +44,7 @@
         { username: "sengchhat1", password: "sengchhat1", role: "Credit Officer", requires2FA: true },
         { username: "sengchhat", password: "sengchhat", role: "Director", requires2FA: true }
     ];
-
+   
     /* =========================================================
        UTILITIES & SESSION HANDLING
     ========================================================= */
@@ -143,7 +144,7 @@
         saveSession(session);
         renderDashboard(session);
     }
-
+   
     /* =========================================================
        DASHBOARD & VIEW CONTROLLER
     ========================================================= */
@@ -178,98 +179,110 @@
     function renderDashboardCards() {
         const container = document.getElementById("searchContainer");
         if (!container) return;
-
+        
         container.innerHTML = `
             <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
                 
                 <!-- Card 1: Total Accounts -->
                 <div class="dashboard-card">
-                    <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="accountCount">$30000</h3>
-                    <p>Total Accounts</p>
-                    <a href="https://tharahuokaing.github.io/total_account/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Details</a>
+                    <a href="https://tharahuokaing.github.io/total_account/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3 id="accountCount">$30000</h3>
+                        <p>Total Accounts</p>
+                        <span class="card-link">View Details</span>
+                    </a>
                 </div>
 
                 <!-- Card 2: Total Deposits -->
                 <div class="dashboard-card">
-                    <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="depositTotal">$50,050,000</h3>
-                    <p>Total Deposits</p>
-                    <a href="https://tharahuokaing.github.io/deposit/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Details</a>
+                    <a href="https://tharahuokaing.github.io/deposit/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3 id="depositTotal">$50,050,000</h3>
+                        <p>Total Deposits</p>
+                        <span class="card-link">View Details</span>
+                    </a>
                 </div>
 
                 <!-- Card 3: Transaction Volumes -->
                 <div class="dashboard-card">
-                    <img src="transaction_volumn.jpg" alt="Transactions Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3 id="txCount">$0</h3>
-                    <p>Transactions Processed</p>
-                    <a href="https://tharahuokaing.github.io/transaction/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Log</a>
+                    <a href="https://tharahuokaing.github.io/transaction/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="transaction_volumn.jpg" alt="Transactions Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3 id="txCount">$0</h3>
+                        <p>Transactions Processed</p>
+                        <span class="card-link">View Log</span>
+                    </a>
                 </div>
 
                 <!-- Card 4: System Phases -->
                 <div class="dashboard-card">
-                    <img src="system_phase.jpg" alt="Phases Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>21</h3>
-                    <p>Total Phases</p>
-                    <a href="https://tharahuokaing.github.io/total_phase/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Phase Map</a>
+                    <a href="https://tharahuokaing.github.io/total_phase/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="system_phase.jpg" alt="Phases Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>21</h3>
+                        <p>Total Phases</p>
+                        <span class="card-link">View Phase Map</span>
+                    </a>
                 </div>
 
                 <!-- Card 5: Financial Compliance -->
                 <div class="dashboard-card">
-                    <img src="financial_complaint.jpg" alt="Compliance Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>ISO 20022</h3>
-                    <p>Compliance Status</p>
-                    <a href="https://tharahuokaing.github.io/financial_compliance/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">View Documents</a>
+                    <a href="https://tharahuokaing.github.io/financial_compliance/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="financial_complaint.jpg" alt="Compliance Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>ISO 20022</h3>
+                        <p>Compliance Status</p>
+                        <span class="card-link">View Documents</span>
+                    </a>
                 </div>
 
                 <!-- Card 6: Interbank Network -->
                 <div class="dashboard-card">
-                    <img src="interbank_network.jpg" alt="Bakong Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>Bakong</h3>
-                    <p>Connected Gateways</p>
-                    <a href="https://tharahuokaing.github.io/interbank_network/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">Gateway Status</a>
+                    <a href="https://tharahuokaing.github.io/interbank_network/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="interbank_network.jpg" alt="Bakong Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>Bakong</h3>
+                        <p>Connected Gateways</p>
+                        <span class="card-link">Gateway Status</span>
+                    </a>
                 </div>
 
                 <!-- Card 7: Security Architecture -->
                 <div class="dashboard-card">
-                    <img src="security_architecture.jpg" alt="SOC Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>SOC</h3>
-                    <p>Monitoring Nodes</p>
-                    <a href="https://tharahuokaing.github.io/security_architecture/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">Live Alerts</a>
+                    <a href="https://tharahuokaing.github.io/security_architecture/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="security_architecture.jpg" alt="SOC Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>SOC</h3>
+                        <p>Monitoring Nodes</p>
+                        <span class="card-link">Live Alerts</span>
+                    </a>
                 </div>
 
                 <!-- Card 8: Pending Clearings -->
                 <div class="dashboard-card">
-                    <img src="pending_clearing.jpg" alt="Clearing Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>0</h3>
-                    <p>Pending Clearings</p>
-                    <a href="https://tharahuokaing.github.io/pending_clearing/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">Clear Queue</a>
+                    <a href="https://tharahuokaing.github.io/pending_clearing/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="pending_clearing.jpg" alt="Clearing Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>0</h3>
+                        <p>Pending Clearings</p>
+                        <span class="card-link">Clear Queue</span>
+                    </a>
                 </div>
 
                 <!-- Card 9: Active Audits -->
                 <div class="dashboard-card">
-                    <img src="active_audit.jpg" alt="Audits Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>Passed</h3>
-                    <p>System Audits</p>
-                    <a href="https://tharahuokaing.github.io/active_audit/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">Report Vault</a>
+                    <a href="https://tharahuokaing.github.io/active_audit/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="active_audit.jpg" alt="Audits Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>Passed</h3>
+                        <p>System Audits</p>
+                        <span class="card-link">Report Vault</span>
+                    </a>
                 </div>
 
                 <!-- Card 10: AI Core Status -->
                 <div class="dashboard-card">
-                    <img src="ai_core.jpg" alt="AI Status Icon" class="card-icon" style="width:150px; height:150px;">
-                    <h3>Operational</h3>
-                    <p>AI Core Systems</p>
-                    <a href="https://tharahuokaing.github.io/ai_core/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">Core Logs</a>
+                    <a href="https://tharahuokaing.github.io/ai_core/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="ai_core.jpg" alt="AI Status Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3>Operational</h3>
+                        <p>AI Core Systems</p>
+                        <span class="card-link">Core Logs</span>
+                    </a>
                 </div>
 
-                <!-- Card 11: Withdrawal Control -->
-               <div class="dashboard-card">
-                   <img src="withdrawal.jpg" alt="Withdrawal Icon" class="card-icon" style="width: 150px; height: 150px;">
-                   <h3>Operational</h3>
-                   <p>Withdrawal</p>
-                   <a href="https://tharahuokaing.github.io/withdrawal/" class="card-link" style="font-size: 1.2rem; font-weight: bold;">Transaction History</a>
-               </div>
-                
             </div>
         `;
     }
@@ -282,7 +295,7 @@
         }
 
         list.innerHTML = "";
-        PhaseRegistry.getAll().forEach(pha => {
+        PhaseRegistry.getAll().forEach(phase => {
             const li = document.createElement("li");
             li.className = "phase-item";
             li.innerHTML = `${phase.name} <span>${phase.status}</span>`;
@@ -292,7 +305,7 @@
             list.appendChild(li);
         });
     }
-
+   
     /* =========================================================
        SESSION MANAGEMENT & LIFE CYCLE
     ========================================================= */
