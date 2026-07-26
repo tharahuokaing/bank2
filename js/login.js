@@ -164,9 +164,9 @@
     function initializeDashboardData() {
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
-            document.getElementById("accountCount").textContent = "$10,000";
-            document.getElementById("depositTotal").textContent = "$600,050,000";
-            document.getElementById("txCount").textContent = "$0";
+            document.getElementById("accountCount").textContent = "$15,000";
+            document.getElementById("depositTotal").textContent = "$700,050,000";
+            document.getElementById("txCount").textContent = "$0.00";
         }
     }
 
@@ -187,7 +187,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/total_account/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="accountCount">$10,000</h3>
+                        <h3 id="accountCount">$15,000</h3>
                         <p>Total Accounts</p>
                         <span class="card-link">View Details</span>
                     </a>
@@ -197,19 +197,19 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/deposit/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="depositTotal">$600,050,000</h3>
+                        <h3 id="depositTotal">$700,050,000</h3>
                         <p>Total Deposits</p>
                         <span class="card-link">View Details</span>
                     </a>
                 </div>
 
-                <!-- Card 3: Withdrawal -->
+                <!-- Card 3: Transaction Volumes -->
                 <div class="dashboard-card">
-                    <a href="https://tharahuokaing.github.io/withdrawal/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
-                        <img src="withdrawal.jpg" alt="Withdrawal Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
-                        <h3>Withdrawal</h3>
-                        <p>Secure Withdrawal</p>
-                        <span class="card-link">Open Module</span>
+                    <a href="https://tharahuokaing.github.io/transaction/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="transaction_volumn.jpg" alt="Transactions Icon" class="card-icon" style="width:150px; height:150px;">
+                        <h3 id="txCount">$0.00</h3>
+                        <p>Transactions Processed</p>
+                        <span class="card-link">View Log</span>
                     </a>
                 </div>
 
@@ -233,7 +233,17 @@
                     </a>
                 </div>
 
-                <!-- Card 6: Global Currency Calculator -->
+                <!-- Card 6: Withdrawal -->
+                <div class="dashboard-card">
+                    <a href="https://tharahuokaing.github.io/withdrawal/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="withdrawal.jpg" alt="Withdrawal Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
+                        <h3>Withdrawal</h3>
+                        <p>Secure Withdrawal</p>
+                        <span class="card-link">Open Module</span>
+                    </a>
+                </div>
+
+                <!-- Card 7: Global Currency Calculator -->
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/calculator/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="calculator.jpg" alt="Calculator Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 50%;">
@@ -243,15 +253,6 @@
                     </a>
                 </div>
 
-                <!-- Card 7: Transaction Volumes -->
-                <div class="dashboard-card">
-                    <a href="https://tharahuokaing.github.io/transaction/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
-                        <img src="transaction_volumn.jpg" alt="Transactions Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="txCount">$0</h3>
-                        <p>Transactions Processed</p>
-                        <span class="card-link">View Log</span>
-                    </a>
-                </div>
 
                 <!-- Card 8: System Phases -->
                 <div class="dashboard-card">
