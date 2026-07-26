@@ -538,3 +538,53 @@ body {
 .goog-te-gadget {
     color: transparent !important;
 }
+
+/* =========================================================
+   HUOKAING THARA SYSTEM - ADDITIONAL UI & TRANSLATE STYLES
+========================================================= */
+
+/* Alignment for Table Actions and Translate Widget */
+.module-header .action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Enhanced Google Translate Dropdown Styling */
+.goog-te-gadget-simple {
+    background-color: #0f172a !important;
+    border: 1px solid #2b313a !important;
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+}
+
+.goog-te-gadget-simple span {
+    color: #38bdf8 !important;
+    font-weight: bold;
+}
+
+.goog-te-gadget-simple img {
+    display: none !important;
+}
+
+/* Sleeker Hover and Active States for Ledger Buttons */
+.btn-remove-ledger {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(246, 70, 93, 0.2);
+}
+
+.btn-remove-ledger:hover {
+    background-color: #ff5268 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(246, 70, 93, 0.4);
+}
+
+/* Responsive Table Adjustments */
+@media(max-width: 768px) {
+    .deposit-table th, .deposit-table td {
+        padding: 10px 10px;
+        font-size: 0.8rem;
+    }
+}
