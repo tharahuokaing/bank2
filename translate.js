@@ -1,11 +1,12 @@
 /* =========================================================
-   HUOKAING THARA SYSTEM - GOOGLE TRANSLATE INTEGRATION (MULTI-LANGUAGE)
+   HUOKAING THARA SYSTEM - GOOGLE TRANSLATE INTEGRATION (VIETNAMESE ADDED)
 ========================================================= */
 
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,km,vi,zh-CN,th,ja,ko,es,fr', // km = Khmer, vi = Vietnamese, en = English
+        // Removed 'ko' (Korean), added 'vi' (Vietnamese) alongside Khmer ('km'), English ('en'), Chinese ('zh-CN'), etc.
+        includedLanguages: 'en,km,vi,zh-CN,th,ja,es,fr',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
     }, 'google_translate_element');
