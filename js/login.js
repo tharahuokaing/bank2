@@ -313,13 +313,13 @@
                     </a>
                 </div>
 
-                <!-- Card 14: AI Core Status -->
+                <!-- Card 14: Cryptocurrency Market Overview -->
                 <div class="dashboard-card">
-                    <a href="https://tharahuokaing.github.io/ai_core/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
-                        <img src="ai_core.jpg" alt="AI Status Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3>Operational</h3>
-                        <p>AI Core Systems</p>
-                        <span class="card-link">Core Logs</span>
+                    <a href="https://tharahuokaing.github.io/cryptocurrency/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
+                        <img src="cryptocurrency.jpg" alt="Crypto Exchange Icon" class="card-icon" style="width:150px; height:150px; object-fit: cover; border-radius: 12px;">
+                        <h3 style="color: #f0b90b;">Live Markets</h3>
+                        <p>Crypto Exchange Overview</p>
+                        <span class="card-link" style="color: #0ecb81;">View 30 Assets</span>
                     </a>
                 </div>
             </div>
