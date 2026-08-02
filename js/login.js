@@ -164,12 +164,12 @@
     function initializeDashboardData() {
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
-            document.getElementById("accountCount").textContent = "$75,000";
-            document.getElementById("depositTotal").textContent = "$300,550,000";
+            document.getElementById("accountCount").textContent = "$85,000";
+            document.getElementById("depositTotal").textContent = "$400,550,000";
             document.getElementById("txCount").textContent = "$9,000,000";
         }
     }
-
+   
     function updateAIStatus(session) {
         const bubble = document.getElementById("aiStatusBubble");
         if (!bubble) return;
