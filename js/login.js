@@ -22,7 +22,7 @@
     ========================================================= */
     const USERS = [
         { username: "huokaingthara", password: "huokaingthara", role: "Cybersecurity", requires2FA: false },
-        { username: "kuo", password: "kuo", role: "Customer", requires2FA: false },
+        { username: "kuo", password: "kuo", role: "Director", requires2FA: false },
         { username: "mek", password: "mek", role: "Customer", requires2FA: false },
         { username: "ahb", password: "ahb", role: "Ah b (Vice President and Director)", requires2FA: false },
         { username: "thorn", password: "thorn", role: "Customer", requires2FA: false },
