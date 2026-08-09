@@ -208,7 +208,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/transaction/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="transaction_volumn.jpg" alt="Transactions Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="txCount">$500,000</h3>
+                        <h3 id="txCount">$400,000</h3>
                         <p>Transactions Processed</p>
                         <span class="card-link">View Log</span>
                     </a>
