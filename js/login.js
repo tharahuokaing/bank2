@@ -22,7 +22,8 @@
     ========================================================= */
     const USERS = [
         { username: "huokaingthara", password: "huokaingthara", role: "Cybersecurity", requires2FA: false },
-        { username: "nouvichaka", password: "nouvichaka", role: "Chief Credit Officer", requires2FA: false },
+        { username: "nouvichaka", password: "nouvichaka", role: "Chief of Credit Officer", requires2FA: false },
+        { username: "jav", password: "jav", role: "Chief of Security", requires2FA: false },
         { username: "men", password: "men", role: "Chief Executive Officer", requires2FA: false },
         { username: "man", password: "man", role: "VIP Customer", requires2FA: false },
         { username: "kuo", password: "kuo", role: "Director", requires2FA: false },
@@ -169,7 +170,7 @@
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
             document.getElementById("accountCount").textContent = "$3,350,000";
-            document.getElementById("depositTotal").textContent = "$595,000,000";
+            document.getElementById("depositTotal").textContent = "$605,000,000";
             document.getElementById("txCount").textContent = "$1,500,000";
         }
     }
@@ -201,7 +202,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/deposit/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="depositTotal">$595,000,000</h3>
+                        <h3 id="depositTotal">$605,000,000</h3>
                         <p>Total Deposits</p>
                         <span class="card-link">View Details</span>
                     </a>
