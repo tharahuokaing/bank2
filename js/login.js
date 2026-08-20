@@ -29,7 +29,7 @@
         { username: "sokkhemera", password: "sokkhemera", role: "VIP Customer", requires2FA: false },
         { username: "dom", password: "dom", role: "VIP Customer", requires2FA: false },
         { username: "kimmuy", password: "kimmuy", role: "Secretary", requires2FA: false },
-        { username: "kimmuy", password: "kimmuy", role: "Chief of Customer Service", requires2FA: false },
+        { username: "kimmuy1", password: "kimmuy1", role: "Chief of Customer Service", requires2FA: false },
         { username: "jav", password: "jav", role: "Chief of Security", requires2FA: false },
         { username: "men", password: "men", role: "Chief Executive Officer", requires2FA: false },
         { username: "man", password: "man", role: "VIP Customer", requires2FA: false },
