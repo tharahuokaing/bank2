@@ -24,6 +24,8 @@
         { username: "huokaingthara", password: "huokaingthara", role: "Cybersecurity", requires2FA: false },
         { username: "nouvichaka", password: "nouvichaka", role: "Chief of Credit Officer", requires2FA: false },
         { username: "do", password: "do", role: "VIP Customer", requires2FA: false },
+        { username: "sokrachana", password: "sokrachana", role: "VIP Customer", requires2FA: false },
+        { username: "sokkhemera", password: "sokkhemera", role: "VIP Customer", requires2FA: false },
         { username: "jav", password: "jav", role: "VIP Customer", requires2FA: false },
         { username: "dom", password: "dom", role: "VIP Customer", requires2FA: false },
         { username: "kimmuy", password: "kimmuy", role: "VIP Customer", requires2FA: false },
