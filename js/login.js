@@ -177,8 +177,8 @@
     function initializeDashboardData() {
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
-            document.getElementById("accountCount").textContent = "$10,350,000.00";
-            document.getElementById("depositTotal").textContent = "$705,000,000.00";
+            document.getElementById("accountCount").textContent = "$15,350,000.00";
+            document.getElementById("depositTotal").textContent = "$715,000,000.00";
             document.getElementById("txCount").textContent = "$1,500,000.00";
         }
     }
@@ -200,7 +200,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/total_account/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="total_account.jpg" alt="Accounts Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="accountCount">$10,350,000.00</h3>
+                        <h3 id="accountCount">$15,350,000.00</h3>
                         <p>Total Accounts</p>
                         <span class="card-link">View Details</span>
                     </a>
@@ -210,7 +210,7 @@
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/deposit/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
                         <img src="total_deposit.jpg" alt="Deposits Icon" class="card-icon" style="width:150px; height:150px;">
-                        <h3 id="depositTotal">$705,000,000.00</h3>
+                        <h3 id="depositTotal">$715,000,000.00</h3>
                         <p>Total Deposits</p>
                         <span class="card-link">View Details</span>
                     </a>
