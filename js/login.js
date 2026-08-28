@@ -281,7 +281,6 @@
                     </a>
                 </div>
 
-
                 <!-- Card 9: Global Currency Calculator -->
                 <div class="dashboard-card">
                     <a href="https://tharahuokaing.github.io/calculator/" style="text-decoration: none; color: inherit; display: block; height: 100%; width: 100%;">
