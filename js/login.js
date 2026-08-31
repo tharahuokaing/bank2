@@ -183,7 +183,7 @@
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
             document.getElementById("accountCount").textContent = "$15,350,000.00";
-            document.getElementById("depositTotal").textContent = "$1025,000,000.00";
+            document.getElementById("depositTotal").textContent = "$1125,000,000.00";
             document.getElementById("txCount").textContent = "$122,010,000.00";
         }
     }
