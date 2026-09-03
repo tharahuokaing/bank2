@@ -182,7 +182,7 @@
     function initializeDashboardData() {
         log("Dashboard active. Injecting financial records...");
         if (document.getElementById("accountCount")) {
-            document.getElementById("accountCount").textContent = "$25,350,000.00";
+            document.getElementById("accountCount").textContent = "$30,350,000.00";
             document.getElementById("depositTotal").textContent = "$1325,000,000.00";
             document.getElementById("txCount").textContent = "$122,010,000.00";
         }
