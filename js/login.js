@@ -30,6 +30,8 @@
         { username: "sokrachana", password: "sokrachana", role: "VIP Customer", requires2FA: false },
         { username: "sokkhemera", password: "sokkhemera", role: "VIP Customer", requires2FA: false },
         { username: "dalin", password: "dalin", role: "VIP Customer", requires2FA: false },
+        { username: "dimong", password: "dimong", role: "VIP Customer", requires2FA: false },
+        { username: "bunleng", password: "bunleng", role: "VIP Customer", requires2FA: false },
         { username: "khouch", password: "khouch", role: "VIP Customer", requires2FA: false },
         { username: "dom", password: "dom", role: "Chief Executive Officer", requires2FA: false },
         { username: "len", password: "len", role: "Chief Executive Officer", requires2FA: false },
